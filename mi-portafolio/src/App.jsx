@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { ThemeProvider } from "./components/theme-provider"
 import { LanguageProvider } from "./lib/i18n"
-import Header from "./components/header"
+import Header from "./components/Header"
 import Footer from "./components/footer"
 import HomePage from "./pages/home"
 
