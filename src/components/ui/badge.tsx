@@ -1,4 +1,4 @@
-import React, { FC, HTMLProps } from "react";
+import React, {  HTMLProps } from "react";
 import { cn } from "../../lib/utils";
 
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline";

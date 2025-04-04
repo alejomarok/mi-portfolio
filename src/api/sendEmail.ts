@@ -22,8 +22,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
       res.status(200).json({ success: true });
     } catch (error) {
+      console.error('Error sending email:', error); // Ahora 'error' está en uso
       res.status(500).json({ error: 'Error sending email' });
     }
+    
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });
   }

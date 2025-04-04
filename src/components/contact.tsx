@@ -54,13 +54,16 @@ export default function Contact() {
 
       // Reset form
       event.currentTarget.reset()
-    } catch (error) {
+    } catch (_) {
+      console.error("Error sending email");
       toast({
         title: t("contact.error.title"),
         description: t("contact.error.message"),
         variant: "destructive",
-      })
-    } finally {
+      });
+    }
+    
+    finally {
       setIsSubmitting(false)
     }
   }

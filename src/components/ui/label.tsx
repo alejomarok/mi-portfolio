@@ -1,4 +1,4 @@
-import React, { FC, Ref } from "react";
+import React, { Ref } from "react";
 import { cn } from "../../lib/utils";
 
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
