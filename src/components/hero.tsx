@@ -98,7 +98,7 @@ export default function Hero() {
         className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-full shadow-xl shadow-indigo-200/50 border border-indigo-100"
       >
         <Image
-          src="/profile.png"
+          src="/profile.jpeg"
           alt="Profile"
           width={400}
           height={400}

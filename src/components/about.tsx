@@ -21,7 +21,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 items-center">
           <div className="relative overflow-hidden rounded-lg">
             <Image
-              src="/profile.png"
+              src="/profile.jpeg"
               alt="About Me"
               width={600}
               height={600}
