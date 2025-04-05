@@ -11,11 +11,11 @@ export default function Hero() {
   const { t } = useTranslation()
 
   return (
-    <section id="home" className="py-20 md:py-32 relative overflow-hidden">
+    <section id="home" className="py-10 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 z-[-1] pointer-events-none">
         <Waves
           lineColor="#390099"
-          backgroundColor="rgba(255, 255, 255, 0.2)"
+          backgroundColor="rgba(89, 89, 89, 0.2)"
           waveSpeedX={0.02}
           waveSpeedY={0.01}
           waveAmpX={40}
@@ -35,14 +35,14 @@ export default function Hero() {
     <div className="flex flex-col space-y-4 order-1 lg:order-1">
       {/* Nombre + Título */}
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+      <h1 className="text-5xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
           {t("hero.name")}
         </h1>
         <p className="text-xl text-muted-foreground">{t("hero.title")}</p>
       </div>
       
       {/* Imagen (sólo visible aquí en mobile) */}
-      <div className="block lg:hidden">
+      <div className="block lg:hidden py-8">
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
