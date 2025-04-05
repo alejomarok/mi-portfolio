@@ -3,6 +3,7 @@
 import { useTranslation } from "@/lib/i18n"
 import { Card, CardContent } from "@/components/ui/card"
 import { Code, Database, Palette, Server, Smartphone, Terminal } from "lucide-react"
+import PixelCard from './pixelcard';
 
 export default function Skills() {
   const { t } = useTranslation()
@@ -49,24 +50,30 @@ export default function Skills() {
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("skills.description")}</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {skills.map((skill, index) => (
-            <Card key={index} className="overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex flex-col items-center text-center">
-                  {skill.icon}
-                  <h3 className="text-xl font-bold mb-4">{skill.category}</h3>
-                  <ul className="space-y-2">
-                    {skill.items.map((item, i) => (
-                      <li key={i} className="flex items-center justify-center">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 justify-items-center">
+        {skills.map((skill, index) => (
+          <PixelCard
+  key={index}
+  variant="blue"
+  className="relative overflow-hidden min-h-[280px] sm:min-h-[300px] transform transition-transform duration-300 hover:scale-[1.03]"
+>
+
+ <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4 md:p-6">
+   {skill.icon}
+   <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-4">{skill.category}</h3>
+   <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
+     {skill.items.map((item, i) => (
+       <li key={i} className="flex items-center justify-center">
+         {item}
+       </li>
+     ))}
+   </ul>
+ </div>
+</PixelCard>
+
+))}
+
+
         </div>
       </div>
     </section>
