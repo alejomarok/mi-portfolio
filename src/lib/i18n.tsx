@@ -7,17 +7,54 @@ const translations = {
   en: {
     nav: {
       home: "Home",
+      about: "About",
       skills: "Skills",
       experience: "Experience",
       projects: "Projects",
       contact: "Contact",
     },
+    
     hero: {
-      name: "John Doe",
+      name: "Alejo Marcó",
       title: "Full Stack Developer",
       description: "I build exceptional and accessible digital experiences for the web.",
       contact: "Contact Me",
       projects: "View Projects",
+    },
+    
+    about: {
+      title: "About Me",
+      subtitle: "Get to know me better",
+      greeting: "Hello, I'm Alejo Marcó",
+      bio1: "I'm a passionate full-stack developer with over 5 years of experience building web applications. I specialize in creating responsive, user-friendly interfaces and robust backend systems.",
+      bio2: "My journey in software development began when I was in college, where I discovered my passion for solving problems through code. Since then, I've worked with various technologies and frameworks, always eager to learn and adapt to new challenges.",
+      details: {
+        title: "Personal Details",
+        name: {
+          label: "Name",
+          value: "Alejo Marcó",
+        },
+        age: {
+          label: "Age",
+          value: "30",
+        },
+        location: {
+          label: "Location",
+          value: "New York, USA",
+        },
+        experience: {
+          label: "Experience",
+          value: "5+ Years",
+        },
+      },
+      interests: {
+        title: "Interests",
+        item1: "Web Development",
+        item2: "Open Source",
+        item3: "AI & Machine Learning",
+        item4: "Photography",
+      },
+      downloadCV: "Download CV",
     },
     skills: {
       title: "Skills",
@@ -124,11 +161,45 @@ const translations = {
       contact: "Contacto",
     },
     hero: {
-      name: "John Doe",
+      name: "Alejo Marcó",
       title: "Desarrollador Full Stack",
       description: "Construyo experiencias digitales excepcionales y accesibles para la web.",
       contact: "Contáctame",
       projects: "Ver Proyectos",
+    },
+    about: {
+      title: "Sobre Mí",
+      subtitle: "Conóceme mejor",
+      greeting: "Hola, soy Alejo Marcó",
+      bio1: "Soy un desarrollador full-stack apasionado con más de 5 años de experiencia construyendo aplicaciones web. Me especializo en crear interfaces responsivas y amigables, y sistemas backend robustos.",
+      bio2: "Mi viaje en el desarrollo de software comenzó cuando estaba en la universidad, donde descubrí mi pasión por resolver problemas a través del código. Desde entonces, he trabajado con varias tecnologías y frameworks, siempre ansioso por aprender y adaptarme a nuevos desafíos.",
+      details: {
+        title: "Detalles Personales",
+        name: {
+          label: "Nombre",
+          value: "Alejo Marcó",
+        },
+        age: {
+          label: "Edad",
+          value: "30",
+        },
+        location: {
+          label: "Ubicación",
+          value: "Nueva York, EE.UU.",
+        },
+        experience: {
+          label: "Experiencia",
+          value: "5+ Años",
+        },
+      },
+      interests: {
+        title: "Intereses",
+        item1: "Desarrollo Web",
+        item2: "Código Abierto",
+        item3: "IA y Machine Learning",
+        item4: "Fotografía",
+      },
+      downloadCV: "Descargar CV",
     },
     skills: {
       title: "Habilidades",
@@ -235,11 +306,45 @@ const translations = {
       contact: "Contact",
     },
     hero: {
-      name: "John Doe",
+      name: "Alejo Marcó",
       title: "Développeur Full Stack",
       description: "Je construis des expériences numériques exceptionnelles et accessibles pour le web.",
       contact: "Me Contacter",
       projects: "Voir les Projets",
+    },
+    about: {
+      title: "À Propos de Moi",
+      subtitle: "Apprenez à me connaître",
+      greeting: "Bonjour, je suis Alejo Marcó",
+      bio1: "Je suis un développeur full-stack passionné avec plus de 5 ans d'expérience dans la construction d'applications web. Je me spécialise dans la création d'interfaces réactives et conviviales, et de systèmes backend robustes.",
+      bio2: "Mon parcours dans le développement logiciel a commencé lorsque j'étais à l'université, où j'ai découvert ma passion pour résoudre des problèmes par le code. Depuis, j'ai travaillé avec diverses technologies et frameworks, toujours désireux d'apprendre et de m'adapter à de nouveaux défis.",
+      details: {
+        title: "Détails Personnels",
+        name: {
+          label: "Nom",
+          value: "Alejo Marcó",
+        },
+        age: {
+          label: "Âge",
+          value: "30",
+        },
+        location: {
+          label: "Emplacement",
+          value: "New York, USA",
+        },
+        experience: {
+          label: "Expérience",
+          value: "5+ Ans",
+        },
+      },
+      interests: {
+        title: "Intérêts",
+        item1: "Développement Web",
+        item2: "Open Source",
+        item3: "IA et Machine Learning",
+        item4: "Photographie",
+      },
+      downloadCV: "Télécharger CV",
     },
     skills: {
       title: "Compétences",
