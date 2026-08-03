@@ -1,0 +1,250 @@
+import type { ProjectItem } from "./types"
+
+export const projects: ProjectItem[] = [
+  {
+    id: "gamaan",
+    slug: "gamaan",
+    name: "GAMAAN",
+    subtitle: {
+      es: "Plataforma financiera y de gestión de créditos",
+      en: "Financial management and credit platform",
+    },
+    category: { es: "Proyecto personal / freelance", en: "Personal / freelance project" },
+    shortDescription: {
+      es: "Producto digital completo para simular, solicitar y administrar créditos, con sitio público y paneles internos con roles diferenciados.",
+      en: "A complete digital product for simulating, requesting, and managing credits, with a public site and internal panels for different roles.",
+    },
+    problem: {
+      es: "Una institución financiera necesitaba llevar sus operaciones de crédito — simulación, solicitud, evaluación y seguimiento — a un producto digital coherente, en lugar de procesos manuales dispersos entre distintos canales.",
+      en: "A financial institution needed to bring its credit operations — simulation, application, evaluation, and follow-up — into a coherent digital product, instead of manual processes spread across different channels.",
+    },
+    solution: {
+      es: "Diseñé y construí GAMAAN como una plataforma con un sitio institucional público y un área privada con control de acceso por rol, cubriendo todo el recorrido: desde la simulación de un crédito hasta la administración de solicitudes y créditos aprobados.",
+      en: "I designed and built GAMAAN as a platform with a public institutional site and a private area with role-based access control, covering the full journey: from simulating a credit to administering applications and approved credits.",
+    },
+    users: {
+      es: "Personas que solicitan un crédito, agencias que operan como intermediarias, y administradores internos que evalúan y gestionan solicitudes.",
+      en: "People applying for credit, partner agencies acting as intermediaries, and internal administrators who evaluate and manage applications.",
+    },
+    role: {
+      es: "Responsable único del producto: definición funcional, flujos de usuario, arquitectura de la aplicación, desarrollo frontend, integración con Firebase, modelado de datos, flujos administrativos y despliegue.",
+      en: "Sole owner of the product: product definition, functional analysis, user flows, application architecture, frontend development, Firebase integration, data modeling, administrative workflows, and deployment.",
+    },
+    features: {
+      es: [
+        "Sitio institucional público",
+        "Simulador de crédito",
+        "Préstamos personales",
+        "Préstamos con garantía / prendarios",
+        "Flujos de crédito hipotecario",
+        "Operaciones de descuento e intercambio de cheques",
+        "Formulario público de solicitud de crédito",
+        "Flujo de evaluación de solicitudes",
+        "Alta de usuario tras la aprobación",
+        "Panel administrativo",
+        "Rol de agencia",
+        "Rol de usuario estándar",
+        "Permisos basados en rol",
+        "Gestión de estado de solicitudes y créditos",
+        "Notificaciones por email",
+        "Login, registro y recuperación de contraseña",
+        "Gestión de solicitudes y créditos aprobados",
+        "Dashboards orientados al negocio",
+      ],
+      en: [
+        "Public institutional website",
+        "Credit simulator",
+        "Personal loans",
+        "Secured / collateral-backed loans",
+        "Mortgage-related credit workflows",
+        "Check-discounting / check-exchange operations",
+        "Public credit application form",
+        "Application evaluation workflow",
+        "User creation after approval",
+        "Administrative panel",
+        "Agency role",
+        "Standard user role",
+        "Role-based permissions",
+        "Application and credit status management",
+        "Email notifications",
+        "Login, registration, and password recovery",
+        "Management of requests and approved credits",
+        "Business-oriented dashboards",
+      ],
+    },
+    technologies: [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Firebase Authentication",
+      "Cloud Firestore",
+      "Firebase Storage",
+      "EmailJS",
+      "Vercel",
+    ],
+    architecture: {
+      es: "Aplicación de una sola página (SPA) con un área pública de marketing/simulación y un área autenticada protegida por rol (usuario, agencia, administrador), usando Cloud Firestore como backend y reglas de seguridad para controlar el acceso a los datos.",
+      en: "Single-page application with a public marketing/simulation area and an authenticated area gated by role (user, agency, admin), using Cloud Firestore as the backend with security rules controlling data access.",
+    },
+    challenges: {
+      es: "Traducir un flujo financiero con múltiples estados (solicitud, evaluación, aprobación, seguimiento) en un modelo de datos claro, y sostener permisos coherentes entre tres roles distintos sin duplicar lógica.",
+      en: "Translating a financial workflow with multiple states (application, evaluation, approval, follow-up) into a clear data model, and keeping permissions consistent across three distinct roles without duplicating logic.",
+    },
+    value: {
+      es: "GAMAAN muestra mi capacidad de llevar una idea de negocio a un producto digital completo, con área pública y área privada, desde la definición del producto hasta el despliegue.",
+      en: "GAMAAN demonstrates my ability to take a business idea to a complete digital product with public and private areas, from product definition through deployment.",
+    },
+    year: "2024",
+    coverVariant: "indigo",
+    screenshotTodo: {
+      es: "Agregar capturas reales: sitio público, simulador de crédito y panel administrativo.",
+      en: "Add real screenshots: public site, credit simulator, and admin panel.",
+    },
+    featured: true,
+    displayOrder: 1,
+  },
+  {
+    id: "autoglobal",
+    slug: "autoglobal",
+    name: "AutoGlobal",
+    subtitle: {
+      es: "Plataforma digital para concesionaria multimarca",
+      en: "Digital platform for a multi-brand vehicle dealership",
+    },
+    category: { es: "Proyecto personal / freelance", en: "Personal / freelance project" },
+    shortDescription: {
+      es: "Sitio comercial para una agencia de vehículos multimarca activa desde 2018, enfocado en presentar el catálogo de forma clara y profesional.",
+      en: "A commercial site for a multi-brand vehicle dealership operating since 2018, focused on presenting the catalog clearly and professionally.",
+    },
+    problem: {
+      es: "AutoGlobal necesitaba una presencia digital que transmitiera confianza y profesionalismo, y que permitiera mostrar su catálogo de vehículos de forma ordenada en lugar de depender solo de canales informales.",
+      en: "AutoGlobal needed a digital presence that conveyed trust and professionalism, and that could present its vehicle catalog in an organized way instead of relying only on informal channels.",
+    },
+    solution: {
+      es: "Desarrollé un sitio con identidad visual propia del rubro automotor, presentación institucional de la marca y un catálogo de vehículos con tarjetas de producto y detalle individual.",
+      en: "I built a site with a visual identity fit for the automotive industry, an institutional presentation of the brand, and a vehicle catalog with product cards and individual detail views.",
+    },
+    users: {
+      es: "Personas interesadas en comprar un vehículo que navegan el catálogo y evalúan opciones.",
+      en: "People interested in buying a vehicle who browse the catalog and evaluate options.",
+    },
+    role: {
+      es: "Desarrollo frontend: arquitectura de componentes reutilizables, presentación del catálogo y experiencia responsiva orientada a conversión.",
+      en: "Frontend development: reusable component architecture, catalog presentation, and a responsive, conversion-oriented experience.",
+    },
+    features: {
+      es: [
+        "Presentación institucional de la marca",
+        "Catálogo de vehículos con tarjetas de producto",
+        "Vista de detalle de vehículo",
+        "Navegación responsiva",
+        "Identidad visual del rubro automotor",
+      ],
+      en: [
+        "Institutional brand presentation",
+        "Vehicle catalog with product cards",
+        "Vehicle detail view",
+        "Responsive navigation",
+        "Automotive-industry visual identity",
+      ],
+    },
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Componentes UI reutilizables"],
+    architecture: {
+      es: "Sitio orientado a catálogo con componentes de tarjeta y detalle reutilizables entre secciones, priorizando una experiencia rápida y clara en mobile.",
+      en: "Catalog-oriented site with card and detail components reused across sections, prioritizing a fast and clear mobile experience.",
+    },
+    challenges: {
+      es: "Diseñar una arquitectura de componentes que se adapte a distintos vehículos y marcas sin duplicar estructura entre vistas.",
+      en: "Designing a component architecture that adapts to different vehicles and brands without duplicating structure across views.",
+    },
+    value: {
+      es: "AutoGlobal muestra mi capacidad de traducir la identidad de una marca comercial en una interfaz ordenada, responsiva y orientada a la conversión.",
+      en: "AutoGlobal demonstrates my ability to translate a commercial brand identity into an organized, responsive, conversion-oriented interface.",
+    },
+    year: "2024",
+    coverVariant: "amber",
+    screenshotTodo: {
+      es: "Agregar capturas reales: home institucional, catálogo y vista de detalle de vehículo.",
+      en: "Add real screenshots: institutional home, catalog, and vehicle detail view.",
+    },
+    contentNote: {
+      es: "Algunas funcionalidades listadas (búsqueda avanzada, integración con WhatsApp) forman parte del alcance previsto del producto; a confirmar cuáles están implementadas en la versión actual antes de publicar.",
+      en: "Some listed capabilities (advanced search, WhatsApp integration) are part of the product's intended scope; confirm which are implemented in the current version before publishing.",
+    },
+    featured: true,
+    displayOrder: 2,
+  },
+  {
+    id: "pactum",
+    slug: "pactum",
+    name: "Pactum",
+    subtitle: {
+      es: "Plataforma web segura con autenticación y gestión privada",
+      en: "Secure web platform with authentication and private management",
+    },
+    category: { es: "Proyecto personal", en: "Personal project" },
+    shortDescription: {
+      es: "Aplicación web con autenticación, rutas protegidas y un panel privado construido con una arquitectura moderna de React/Next.js.",
+      en: "A web application with authentication, protected routes, and a private dashboard built with a modern React/Next.js architecture.",
+    },
+    problem: {
+      es: "El contexto de negocio específico de Pactum está pendiente de confirmación; la base de código disponible muestra un producto centrado en acceso seguro y gestión privada de información.",
+      en: "Pactum's specific business context is pending confirmation; the available codebase shows a product centered on secure access and private information management.",
+    },
+    solution: {
+      es: "Una plataforma con área pública y área autenticada, donde el acceso a las funcionalidades de gestión está protegido por login y rutas privadas, con soporte de tema claro y oscuro.",
+      en: "A platform with a public area and an authenticated area, where access to management functionality is protected by login and private routes, with light and dark theme support.",
+    },
+    users: {
+      es: "Usuarios autenticados que necesitan acceder a un panel privado de gestión.",
+      en: "Authenticated users who need access to a private management dashboard.",
+    },
+    role: {
+      es: "Desarrollo de la aplicación: autenticación, rutas protegidas, arquitectura de componentes y soporte de temas.",
+      en: "Application development: authentication, protected routes, component architecture, and theme support.",
+    },
+    features: {
+      es: [
+        "Login y logout",
+        "Rutas protegidas",
+        "Dashboard / panel privado",
+        "Componentes de interfaz reutilizables",
+        "Soporte de tema claro y oscuro",
+        "Navegación adaptada a usuarios autenticados",
+      ],
+      en: [
+        "Login and logout",
+        "Protected routes",
+        "Dashboard / private panel",
+        "Reusable interface components",
+        "Light and dark theme support",
+        "Navigation adapted to authenticated users",
+      ],
+    },
+    technologies: ["React", "Next.js", "Autenticación", "Rutas protegidas"],
+    architecture: {
+      es: "Estructura de aplicación moderna con separación entre rutas públicas y protegidas, y manejo de sesión para controlar el acceso al panel privado.",
+      en: "Modern application structure with a separation between public and protected routes, and session handling to control access to the private panel.",
+    },
+    challenges: {
+      es: "Mantener una experiencia de navegación coherente entre el estado autenticado y no autenticado, con protección de rutas consistente.",
+      en: "Keeping a coherent navigation experience between authenticated and unauthenticated state, with consistent route protection.",
+    },
+    value: {
+      es: "Pactum muestra mi capacidad de construir la base técnica de un producto con autenticación real: rutas protegidas, manejo de sesión y una arquitectura de componentes lista para escalar.",
+      en: "Pactum demonstrates my ability to build the technical foundation of a product with real authentication: protected routes, session handling, and a component architecture ready to scale.",
+    },
+    year: "2024",
+    coverVariant: "teal",
+    screenshotTodo: {
+      es: "Agregar capturas reales: login y dashboard privado.",
+      en: "Add real screenshots: login and private dashboard.",
+    },
+    contentNote: {
+      es: "El propósito de negocio específico de Pactum está pendiente de confirmación. Esta descripción se mantiene deliberadamente conservadora hasta contar con más contexto.",
+      en: "Pactum's specific business purpose is pending confirmation. This description is deliberately kept conservative until more context is available.",
+    },
+    featured: true,
+    displayOrder: 3,
+  },
+]

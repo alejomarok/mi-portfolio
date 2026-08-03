@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import type React from "react"
 import { useState } from "react"
@@ -8,8 +8,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+import { Mail, MapPin, Send, Loader2, Github, Linkedin } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
+import { site, socialLinks } from "@/data/site"
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -17,96 +18,89 @@ export default function Contact() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (isSubmitting) return
     setIsSubmitting(true)
 
-    const formData = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    const formData = new FormData(form)
     const name = formData.get("name") as string
     const email = formData.get("email") as string
     const message = formData.get("message") as string
 
-    const emailOptions = {
-      name,
-      email,
-      message,
-      to: "recipient@example.com", // Ajusta la dirección de destino
-      subject: "Nuevo mensaje de contacto",
-    }
-
     try {
-      // Llamar a la API Route de Next.js
-      const response = await fetch("/api/sendEmail", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(emailOptions),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
       })
 
       if (!response.ok) {
-        throw new Error("Error al enviar el correo")
+        throw new Error("Error sending message")
       }
 
       toast({
-        title: t("contact.success.title"),
-        description: t("contact.success.message"),
+        title: t("contact.success.title") as string,
+        description: t("contact.success.message") as string,
       })
-
-      // Reset form
-      event.currentTarget.reset()
-    } catch (_) {
-      console.error("Error sending email");
+      form.reset()
+    } catch {
       toast({
-        title: t("contact.error.title"),
-        description: t("contact.error.message"),
+        title: t("contact.error.title") as string,
+        description: t("contact.error.message") as string,
         variant: "destructive",
-      });
-    }
-    
-    finally {
+      })
+    } finally {
       setIsSubmitting(false)
     }
   }
+
+  const linkedin = socialLinks.find((link) => link.icon === "linkedin")
+  const github = socialLinks.find((link) => link.icon === "github")
 
   return (
     <section id="contact" className="py-20">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{t("contact.title")}</h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("contact.description")}</p>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              {t("contact.title") as string}
+            </h2>
+            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+              {t("contact.description") as string}
+            </p>
           </div>
         </div>
         <div className="mx-auto max-w-5xl mt-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>{t("contact.form.title")}</CardTitle>
-                <CardDescription>{t("contact.form.description")}</CardDescription>
+                <CardTitle>{t("contact.form.title") as string}</CardTitle>
+                <CardDescription>{t("contact.form.description") as string}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">{t("contact.form.name")}</Label>
+                    <Label htmlFor="name">{t("contact.form.name") as string}</Label>
                     <Input id="name" name="name" required />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">{t("contact.form.email")}</Label>
+                    <Label htmlFor="email">{t("contact.form.email") as string}</Label>
                     <Input id="email" name="email" type="email" required />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="message">{t("contact.form.message")}</Label>
+                    <Label htmlFor="message">{t("contact.form.message") as string}</Label>
                     <Textarea id="message" name="message" rows={5} required />
                   </div>
                   <Button type="submit" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        {t("contact.form.sending")}
+                        {t("contact.form.sending") as string}
                       </>
                     ) : (
                       <>
                         <Send className="mr-2 h-4 w-4" />
-                        {t("contact.form.submit")}
+                        {t("contact.form.submit") as string}
                       </>
                     )}
                   </Button>
@@ -115,31 +109,58 @@ export default function Contact() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>{t("contact.info.title")}</CardTitle>
-                <CardDescription>{t("contact.info.description")}</CardDescription>
+                <CardTitle>{t("contact.info.title") as string}</CardTitle>
+                <CardDescription>{t("contact.info.description") as string}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <Mail className="h-6 w-6 mt-1 text-primary" />
                   <div>
-                    <h3 className="font-medium">{t("contact.info.email")}</h3>
-                    <p className="text-sm text-muted-foreground">your.email@example.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Phone className="h-6 w-6 mt-1 text-primary" />
-                  <div>
-                    <h3 className="font-medium">{t("contact.info.phone")}</h3>
-                    <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+                    <h3 className="font-medium">{t("contact.info.email") as string}</h3>
+                    <a href={`mailto:${site.email}`} className="text-sm text-muted-foreground hover:text-primary">
+                      {site.email}
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <MapPin className="h-6 w-6 mt-1 text-primary" />
                   <div>
-                    <h3 className="font-medium">{t("contact.info.location")}</h3>
-                    <p className="text-sm text-muted-foreground">New York, NY, USA</p>
+                    <h3 className="font-medium">{t("contact.info.location") as string}</h3>
+                    <p className="text-sm text-muted-foreground">{site.location.es}</p>
                   </div>
                 </div>
+                {linkedin && (
+                  <div className="flex items-start space-x-4">
+                    <Linkedin className="h-6 w-6 mt-1 text-primary" />
+                    <div>
+                      <h3 className="font-medium">LinkedIn</h3>
+                      <a
+                        href={linkedin.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-muted-foreground hover:text-primary"
+                      >
+                        {linkedin.href.replace("https://www.", "")}
+                      </a>
+                    </div>
+                  </div>
+                )}
+                {github && (
+                  <div className="flex items-start space-x-4">
+                    <Github className="h-6 w-6 mt-1 text-primary" />
+                    <div>
+                      <h3 className="font-medium">GitHub</h3>
+                      <a
+                        href={github.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-muted-foreground hover:text-primary"
+                      >
+                        {github.href.replace("https://", "")}
+                      </a>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

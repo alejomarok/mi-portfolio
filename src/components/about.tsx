@@ -3,18 +3,29 @@
 import { useTranslation } from "@/lib/i18n"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { FileText } from "lucide-react"
+import { FileDown } from "lucide-react"
+import ScrollReveal from "./scroll-reveal"
+import { site } from "@/data/site"
 
 export default function About() {
   const { t } = useTranslation()
+  const paragraphs = t("about.paragraphs") as unknown as readonly string[]
+  const quickFacts = [
+    { label: t("about.quickFacts.role.label") as string, value: t("about.quickFacts.role.value") as string },
+    { label: t("about.quickFacts.company.label") as string, value: t("about.quickFacts.company.value") as string },
+    { label: t("about.quickFacts.location.label") as string, value: t("about.quickFacts.location.value") as string },
+    { label: t("about.quickFacts.since.label") as string, value: t("about.quickFacts.since.value") as string },
+  ]
 
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{t("about.title")}</h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("about.subtitle")}</p>
+            <ScrollReveal baseOpacity={0} enableBlur baseRotation={10} blurStrength={15} containerClassName="my-5">
+              {t("about.title") as string}
+            </ScrollReveal>
+            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("about.subtitle") as string}</p>
           </div>
         </div>
 
@@ -22,7 +33,7 @@ export default function About() {
           <div className="relative overflow-hidden rounded-lg">
             <Image
               src="/profile.jpeg"
-              alt="About Me"
+              alt="Alejo Marcó"
               width={600}
               height={600}
               className="object-cover w-full h-full transition-transform img-hover"
@@ -30,49 +41,29 @@ export default function About() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold">{t("about.greeting")}</h3>
-            <p className="text-lg">{t("about.bio1")}</p>
-            <p className="text-lg">{t("about.bio2")}</p>
+            {paragraphs.map((paragraph, index) => (
+              <ScrollReveal key={index} baseOpacity={1} enableBlur baseRotation={10} blurStrength={10} textClassName="text-lg">
+                {paragraph}
+              </ScrollReveal>
+            ))}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-              <div>
-                <h4 className="text-lg font-semibold mb-2">{t("about.details.title")}</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <span className="font-medium">{t("about.details.name.label")}: </span>
-                    <span>{t("about.details.name.value")}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">{t("about.details.age.label")}: </span>
-                    <span>{t("about.details.age.value")}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">{t("about.details.location.label")}: </span>
-                    <span>{t("about.details.location.value")}</span>
-                  </li>
-                  <li>
-                    <span className="font-medium">{t("about.details.experience.label")}: </span>
-                    <span>{t("about.details.experience.value")}</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-2">{t("about.interests.title")}</h4>
-                <ul className="space-y-2">
-                  <li>{t("about.interests.item1")}</li>
-                  <li>{t("about.interests.item2")}</li>
-                  <li>{t("about.interests.item3")}</li>
-                  <li>{t("about.interests.item4")}</li>
-                </ul>
-              </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-3">{t("about.quickFacts.title") as string}</h4>
+              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {quickFacts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt className="text-sm text-muted-foreground">{fact.label}</dt>
+                    <dd className="font-medium">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
 
             <div className="mt-6">
               <Button asChild>
-                <a href="#" download>
-                  <FileText className="mr-2 h-4 w-4" />
-                  {t("about.downloadCV")}
+                <a href={site.resumeUrl} download>
+                  <FileDown className="mr-2 h-4 w-4" />
+                  {t("about.downloadCV") as string}
                 </a>
               </Button>
             </div>
@@ -82,4 +73,3 @@ export default function About() {
     </section>
   )
 }
-

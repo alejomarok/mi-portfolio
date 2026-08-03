@@ -102,11 +102,11 @@ class Pixel {
     }
 }
 
-function getEffectiveSpeed(value: any, reducedMotion: any) {
+function getEffectiveSpeed(value: number | string, reducedMotion: boolean) {
     const min = 0;
     const max = 100;
     const throttle = 0.001;
-    const parsed = parseInt(value, 10);
+    const parsed = parseInt(String(value), 10);
 
     if (parsed <= min || reducedMotion) {
         return min;
@@ -182,7 +182,7 @@ export default function PixelCard({
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const pixelsRef = useRef<Pixel[]>([]);
-    const animationRef = useRef<any>(null);
+    const animationRef = useRef<number | null>(null);
     const timePreviousRef = useRef(performance.now());
     const [reducedMotion, setReducedMotion] = useState(false);
     useEffect(() => {
@@ -254,19 +254,25 @@ export default function PixelCard({
         let allIdle = true;
         for (let i = 0; i < pixelsRef.current.length; i++) {
             const pixel = pixelsRef.current[i];
-            // @ts-ignore
+            // @ts-expect-error - fnName narrows to a no-arg method of Pixel at call sites
             pixel[fnName]();
             if (!pixel.isIdle) {
                 allIdle = false;
             }
         }
         if (allIdle) {
+            cancelPendingAnimation();
+        }
+    };
+
+    const cancelPendingAnimation = () => {
+        if (animationRef.current !== null) {
             cancelAnimationFrame(animationRef.current);
         }
     };
 
     const handleAnimation = (name: keyof Pixel) => {
-        cancelAnimationFrame(animationRef.current);
+        cancelPendingAnimation();
         animationRef.current = requestAnimationFrame(() => doAnimate(name));
     };
 
@@ -291,7 +297,7 @@ export default function PixelCard({
         }
         return () => {
             observer.disconnect();
-            cancelAnimationFrame(animationRef.current);
+            cancelPendingAnimation();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
@@ -299,7 +305,8 @@ export default function PixelCard({
     return (
         <div
             ref={containerRef}
-            className={`h-[400px] w-[300px] relative overflow-hidden grid place-items-center aspect-[4/5] border border-[#27272a] rounded-[25px] isolate transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
+            className={`h-[400px] w-[300px] relative overflow-hidden grid place-items-center aspect-[4/5] border border-[#27272a] rounded-[25px] isolate transition-colors duration-200 select-none ${className}`}
+            style={{ transitionTimingFunction: "cubic-bezier(0.5, 1, 0.89, 1)" }}
 
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}

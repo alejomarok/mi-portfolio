@@ -1,5 +1,5 @@
 import React from "react"
-import { cn } from "../../lib/utils"
+import { cn } from "@/lib/utils"
 
 // Definir los tipos para las props
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {

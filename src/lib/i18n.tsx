@@ -1,266 +1,81 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import type { Locale } from "@/data/types"
 
-// Define translations
 const translations = {
-  en: {
-    nav: {
-      home: "Home",
-      about: "About",
-      skills: "Skills",
-      experience: "Experience",
-      projects: "Projects",
-      contact: "Contact",
-    },
-    
-    hero: {
-      name: "Alejo Marcó",
-      title: "Full Stack Developer",
-      description: "I build exceptional and accessible digital experiences for the web.",
-      contact: "Contact Me",
-      projects: "View Projects",
-    },
-    
-    about: {
-      title: "About Me",
-      subtitle: "Get to know me better",
-      greeting: "Hello, I'm Alejo Marcó",
-      bio1: "I'm a passionate full-stack developer with over 5 years of experience building web applications. I specialize in creating responsive, user-friendly interfaces and robust backend systems.",
-      bio2: "My journey in software development began when I was in college, where I discovered my passion for solving problems through code. Since then, I've worked with various technologies and frameworks, always eager to learn and adapt to new challenges.",
-      details: {
-        title: "Personal Details",
-        name: {
-          label: "Name",
-          value: "Alejo Marcó",
-        },
-        age: {
-          label: "Age",
-          value: "30",
-        },
-        location: {
-          label: "Location",
-          value: "New York, USA",
-        },
-        experience: {
-          label: "Experience",
-          value: "5+ Years",
-        },
-      },
-      interests: {
-        title: "Interests",
-        item1: "Web Development",
-        item2: "Open Source",
-        item3: "AI & Machine Learning",
-        item4: "Photography",
-      },
-      downloadCV: "Download CV",
-    },
-    skills: {
-      title: "Skills",
-      description: "Here are the technologies and tools I work with.",
-      frontend: "Frontend",
-      backend: "Backend",
-      database: "Database",
-      mobile: "Mobile",
-      design: "Design",
-      other: "Other",
-    },
-    experience: {
-      title: "Experience",
-      description: "My professional journey and work experience.",
-      job1: {
-        title: "Senior Frontend Developer",
-        company: "Tech Solutions Inc.",
-        period: "2020 - Present",
-        description:
-          "Led the development of responsive web applications using React and Next.js. Implemented state management solutions and optimized performance.",
-      },
-      job2: {
-        title: "Backend Developer",
-        company: "Data Systems LLC",
-        period: "2018 - 2020",
-        description:
-          "Developed RESTful APIs using Node.js and Express. Designed and maintained database schemas and implemented authentication systems.",
-      },
-      job3: {
-        title: "Full Stack Developer",
-        company: "Web Innovations",
-        period: "2016 - 2018",
-        description:
-          "Built full-stack applications using Python, Django, and React. Collaborated with design teams to implement UI/UX improvements.",
-      },
-    },
-    projects: {
-      title: "Projects",
-      description: "Check out some of my recent work.",
-      demo: "Live Demo",
-      code: "View Code",
-      project1: {
-        title: "E-commerce Platform",
-        description:
-          "A modern e-commerce platform with product management, cart functionality, and payment processing.",
-      },
-      project2: {
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates and team features.",
-      },
-      project3: {
-        title: "Data Visualization Dashboard",
-        description: "An interactive dashboard for visualizing and analyzing complex datasets.",
-      },
-    },
-    contact: {
-      title: "Contact Me",
-      description: "Have a project in mind? Let's work together!",
-      form: {
-        title: "Send a Message",
-        description: "Fill out the form below and I'll get back to you as soon as possible.",
-        name: "Name",
-        email: "Email",
-        message: "Message",
-        submit: "Send Message",
-        sending: "Sending...",
-      },
-      info: {
-        title: "Contact Information",
-        description: "Feel free to reach out through any of these channels.",
-        email: "Email",
-        phone: "Phone",
-        location: "Location",
-      },
-      success: {
-        title: "Message Sent!",
-        message: "Thank you for your message. I'll get back to you soon.",
-      },
-      error: {
-        title: "Error",
-        message: "There was an error sending your message. Please try again.",
-      },
-    },
-    footer: {
-      about: {
-        title: "About",
-        description: "I'm a passionate developer focused on creating beautiful and functional web experiences.",
-      },
-      links: {
-        title: "Quick Links",
-      },
-      social: {
-        title: "Social Media",
-      },
-      copyright: "All rights reserved.",
-    },
-  },
   es: {
-    nav: {
-      home: "Inicio",
-      skills: "Habilidades",
-      experience: "Experiencia",
-      projects: "Proyectos",
-      contact: "Contacto",
-    },
     hero: {
-      name: "Alejo Marcó",
-      title: "Desarrollador Full Stack",
-      description: "Construyo experiencias digitales excepcionales y accesibles para la web.",
-      contact: "Contáctame",
+      title: "Líder Técnico y Desarrollador de Software",
+      description:
+        "Construyo, mantengo y modernizo software de negocio crítico, combinando Oracle PL/SQL, experiencia en sistemas legacy y desarrollo Full Stack moderno.",
+      contact: "Contactar",
       projects: "Ver Proyectos",
+      resume: "Descargar CV",
     },
     about: {
       title: "Sobre Mí",
-      subtitle: "Conóceme mejor",
-      greeting: "Hola, soy Alejo Marcó",
-      bio1: "Soy un desarrollador full-stack apasionado con más de 5 años de experiencia construyendo aplicaciones web. Me especializo en crear interfaces responsivas y amigables, y sistemas backend robustos.",
-      bio2: "Mi viaje en el desarrollo de software comenzó cuando estaba en la universidad, donde descubrí mi pasión por resolver problemas a través del código. Desde entonces, he trabajado con varias tecnologías y frameworks, siempre ansioso por aprender y adaptarme a nuevos desafíos.",
-      details: {
-        title: "Detalles Personales",
-        name: {
-          label: "Nombre",
-          value: "Alejo Marcó",
-        },
-        age: {
-          label: "Edad",
-          value: "30",
-        },
-        location: {
-          label: "Ubicación",
-          value: "Nueva York, EE.UU.",
-        },
-        experience: {
-          label: "Experiencia",
-          value: "5+ Años",
-        },
-      },
-      interests: {
-        title: "Intereses",
-        item1: "Desarrollo Web",
-        item2: "Código Abierto",
-        item3: "IA y Machine Learning",
-        item4: "Fotografía",
+      subtitle: "Análisis, desarrollo y liderazgo técnico sobre sistemas reales",
+      paragraphs: [
+        "Soy desarrollador y analista técnico, con base en Córdoba, Argentina. Desde 2023 trabajo en Recursos Informáticos, donde combino desarrollo, análisis técnico, liderazgo y modernización sobre aplicaciones empresariales.",
+        "Estoy acostumbrado a trabajar con reglas de negocio complejas y con sistemas de producción que acumulan décadas de lógica. Me muevo entre base de datos, backend, frontend, relevamiento de requerimientos, testing y soporte, y disfruto entender cómo funciona un sistema antes de proponer cambios.",
+        "En paralelo, construyo productos modernos con React, Next.js, Node.js y Firebase. Me interesa seguir creciendo en roles de backend, Full Stack, Oracle, modernización de sistemas o liderazgo técnico.",
+      ],
+      quickFacts: {
+        title: "Datos rápidos",
+        role: { label: "Rol actual", value: "Líder Técnico / Analista Programador" },
+        company: { label: "Empresa", value: "Recursos Informáticos" },
+        location: { label: "Ubicación", value: "Córdoba, Argentina" },
+        since: { label: "En el rol desde", value: "2023" },
       },
       downloadCV: "Descargar CV",
     },
-    skills: {
-      title: "Habilidades",
-      description: "Estas son las tecnologías y herramientas con las que trabajo.",
-      frontend: "Frontend",
-      backend: "Base de Datos",
-      mobile: "Móvil",
-      design: "Diseño",
-      other: "Otros",
+    strengths: {
+      title: "Fortalezas Clave",
+      subtitle: "Lo que aporto más allá de una lista de tecnologías",
     },
     experience: {
-      title: "Experiencia",
-      description: "Mi trayectoria profesional y experiencia laboral.",
-      job1: {
-        title: "Desarrollador Frontend Senior",
-        company: "Tech Solutions Inc.",
-        period: "2020 - Presente",
-        description:
-          "Lideré el desarrollo de aplicaciones web responsivas usando React y Next.js. Implementé soluciones de gestión de estado y optimicé el rendimiento.",
-      },
-      job2: {
-        title: "Desarrollador Backend",
-        company: "Data Systems LLC",
-        period: "2018 - 2020",
-        description:
-          "Desarrollé APIs RESTful usando Node.js y Express. Diseñé y mantuve esquemas de bases de datos e implementé sistemas de autenticación.",
-      },
-      job3: {
-        title: "Desarrollador Full Stack",
-        company: "Web Innovations",
-        period: "2016 - 2018",
-        description:
-          "Construí aplicaciones full-stack usando Python, Django y React. Colaboré con equipos de diseño para implementar mejoras de UI/UX.",
-      },
+      title: "Experiencia Profesional",
+      description: "Mi trayectoria técnica y de liderazgo en sistemas de negocio críticos.",
+      stackLabel: "Stack principal",
     },
     projects: {
-      title: "Proyectos",
-      description: "Mira algunos de mis trabajos recientes.",
+      title: "Proyectos Destacados",
+      description: "Productos que diseñé y construí de punta a punta, fuera de mi trabajo en Recursos Informáticos.",
+      viewDetails: "Ver detalle",
+      hideDetails: "Ocultar detalle",
       demo: "Demo en Vivo",
       code: "Ver Código",
-      project1: {
-        title: "Plataforma de E-commerce",
-        description:
-          "Una plataforma moderna de comercio electrónico con gestión de productos, funcionalidad de carrito y procesamiento de pagos.",
-      },
-      project2: {
-        title: "App de Gestión de Tareas",
-        description:
-          "Una aplicación colaborativa de gestión de tareas con actualizaciones en tiempo real y funciones de equipo.",
-      },
-      project3: {
-        title: "Dashboard de Visualización de Datos",
-        description: "Un panel interactivo para visualizar y analizar conjuntos de datos complejos.",
-      },
+      problem: "Problema",
+      solution: "Solución",
+      users: "Usuarios",
+      role: "Mi rol",
+      features: "Funcionalidades principales",
+      architecture: "Arquitectura",
+      challenges: "Desafíos",
+      value: "Valor entregado",
+      technologies: "Tecnologías",
+      screenshotPending: "Captura pendiente de agregar",
+      contentPending: "Contenido a confirmar",
+    },
+    skills: {
+      title: "Expertise Técnico",
+      description: "Tecnologías organizadas según mi perfil profesional real, no una lista plana de logos.",
+    },
+    methodology: {
+      title: "Cómo Trabajo",
+      description: "El proceso que sigo para entender un problema y resolverlo sin romper lo que ya funciona.",
+    },
+    education: {
+      title: "Formación y Certificaciones",
+      description: "Formación complementaria a mi experiencia profesional.",
     },
     contact: {
       title: "Contáctame",
-      description: "¿Tienes un proyecto en mente? ¡Trabajemos juntos!",
+      description: "¿Tenés una oportunidad, un proyecto o una consulta técnica? Escribime.",
       form: {
         title: "Enviar un Mensaje",
-        description: "Completa el formulario a continuación y me pondré en contacto contigo lo antes posible.",
+        description: "Completá el formulario y te respondo a la brevedad.",
         name: "Nombre",
         email: "Correo Electrónico",
         message: "Mensaje",
@@ -269,247 +84,193 @@ const translations = {
       },
       info: {
         title: "Información de Contacto",
-        description: "No dudes en contactarme a través de cualquiera de estos canales.",
+        description: "También podés contactarme directamente por estos canales.",
         email: "Correo Electrónico",
-        phone: "Teléfono",
         location: "Ubicación",
       },
       success: {
-        title: "¡Mensaje Enviado!",
-        message: "Gracias por tu mensaje. Me pondré en contacto contigo pronto.",
+        title: "¡Mensaje enviado!",
+        message: "Gracias por escribirme. Te voy a responder a la brevedad.",
       },
       error: {
         title: "Error",
-        message: "Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.",
+        message: "Hubo un error al enviar tu mensaje. Probá de nuevo o escribime directamente por email.",
       },
     },
     footer: {
       about: {
         title: "Acerca de",
-        description: "Soy un desarrollador apasionado enfocado en crear experiencias web hermosas y funcionales.",
+        description:
+          "Desarrollador y analista técnico enfocado en sistemas de negocio, modernización de aplicaciones legacy y desarrollo Full Stack.",
       },
-      links: {
-        title: "Enlaces Rápidos",
-      },
-      social: {
-        title: "Redes Sociales",
-      },
+      links: { title: "Enlaces Rápidos" },
+      social: { title: "Redes" },
       copyright: "Todos los derechos reservados.",
     },
   },
-  fr: {
-    nav: {
-      home: "Accueil",
-      skills: "Compétences",
-      experience: "Expérience",
-      projects: "Projets",
-      contact: "Contact",
-    },
+  en: {
     hero: {
-      name: "Alejo Marcó",
-      title: "Développeur Full Stack",
-      description: "Je construis des expériences numériques exceptionnelles et accessibles pour le web.",
-      contact: "Me Contacter",
-      projects: "Voir les Projets",
+      title: "Technical Lead & Software Developer",
+      description:
+        "I build, maintain, and modernize business-critical software, combining Oracle PL/SQL, legacy-system expertise, and modern Full Stack development.",
+      contact: "Contact Me",
+      projects: "View Projects",
+      resume: "Download Résumé",
     },
     about: {
-      title: "À Propos de Moi",
-      subtitle: "Apprenez à me connaître",
-      greeting: "Bonjour, je suis Alejo Marcó",
-      bio1: "Je suis un développeur full-stack passionné avec plus de 5 ans d'expérience dans la construction d'applications web. Je me spécialise dans la création d'interfaces réactives et conviviales, et de systèmes backend robustes.",
-      bio2: "Mon parcours dans le développement logiciel a commencé lorsque j'étais à l'université, où j'ai découvert ma passion pour résoudre des problèmes par le code. Depuis, j'ai travaillé avec diverses technologies et frameworks, toujours désireux d'apprendre et de m'adapter à de nouveaux défis.",
-      details: {
-        title: "Détails Personnels",
-        name: {
-          label: "Nom",
-          value: "Alejo Marcó",
-        },
-        age: {
-          label: "Âge",
-          value: "30",
-        },
-        location: {
-          label: "Emplacement",
-          value: "New York, USA",
-        },
-        experience: {
-          label: "Expérience",
-          value: "5+ Ans",
-        },
+      title: "About Me",
+      subtitle: "Analysis, development, and technical leadership on real systems",
+      paragraphs: [
+        "I'm a developer and technical analyst based in Córdoba, Argentina. Since 2023 I've worked at Recursos Informáticos, where I combine development, technical analysis, leadership, and modernization on enterprise applications.",
+        "I'm used to working with complex business rules and production systems that have accumulated decades of logic. I move between database, backend, frontend, requirements gathering, testing, and support, and I enjoy understanding how a system works before proposing changes.",
+        "In parallel, I build modern products with React, Next.js, Node.js, and Firebase. I'm interested in continuing to grow in backend, Full Stack, Oracle, system modernization, or technical leadership roles.",
+      ],
+      quickFacts: {
+        title: "Quick facts",
+        role: { label: "Current role", value: "Technical Lead / Analyst Programmer" },
+        company: { label: "Company", value: "Recursos Informáticos" },
+        location: { label: "Location", value: "Córdoba, Argentina" },
+        since: { label: "In this role since", value: "2023" },
       },
-      interests: {
-        title: "Intérêts",
-        item1: "Développement Web",
-        item2: "Open Source",
-        item3: "IA et Machine Learning",
-        item4: "Photographie",
-      },
-      downloadCV: "Télécharger CV",
+      downloadCV: "Download Résumé",
     },
-    skills: {
-      title: "Compétences",
-      description: "Voici les technologies et outils avec lesquels je travaille.",
-      frontend: "Frontend",
-      backend: "Base de Données",
-      mobile: "Mobile",
-      design: "Design",
-      other: "Autres",
+    strengths: {
+      title: "Key Strengths",
+      subtitle: "What I bring beyond a list of technologies",
     },
     experience: {
-      title: "Expérience",
-      description: "Mon parcours professionnel et mon expérience de travail.",
-      job1: {
-        title: "Développeur Frontend Senior",
-        company: "Tech Solutions Inc.",
-        period: "2020 - Présent",
-        description:
-          "J'ai dirigé le développement d'applications web responsives en utilisant React et Next.js. J'ai implémenté des solutions de gestion d'état et optimisé les performances.",
-      },
-      job2: {
-        title: "Développeur Backend",
-        company: "Data Systems LLC",
-        period: "2018 - 2020",
-        description:
-          "J'ai développé des API RESTful en utilisant Node.js et Express. J'ai conçu et maintenu des schémas de base de données et implémenté des systèmes d'authentification.",
-      },
-      job3: {
-        title: "Développeur Full Stack",
-        company: "Web Innovations",
-        period: "2016 - 2018",
-        description:
-          "J'ai construit des applications full-stack en utilisant Python, Django et React. J'ai collaboré avec des équipes de design pour implémenter des améliorations UI/UX.",
-      },
+      title: "Professional Experience",
+      description: "My technical and leadership track record on business-critical systems.",
+      stackLabel: "Core stack",
     },
     projects: {
-      title: "Projets",
-      description: "Découvrez certains de mes travaux récents.",
-      demo: "Démo en Direct",
-      code: "Voir le Code",
-      project1: {
-        title: "Plateforme E-commerce",
-        description:
-          "Une plateforme e-commerce moderne avec gestion des produits, fonctionnalité de panier et traitement des paiements.",
-      },
-      project2: {
-        title: "Application de Gestion des Tâches",
-        description:
-          "Une application collaborative de gestion des tâches avec mises à jour en temps réel et fonctionnalités d'équipe.",
-      },
-      project3: {
-        title: "Tableau de Bord de Visualisation de Données",
-        description: "Un tableau de bord interactif pour visualiser et analyser des ensembles de données complexes.",
-      },
+      title: "Featured Projects",
+      description: "Products I designed and built end to end, outside of my work at Recursos Informáticos.",
+      viewDetails: "View details",
+      hideDetails: "Hide details",
+      demo: "Live Demo",
+      code: "View Code",
+      problem: "Problem",
+      solution: "Solution",
+      users: "Users",
+      role: "My role",
+      features: "Main features",
+      architecture: "Architecture",
+      challenges: "Challenges",
+      value: "Value delivered",
+      technologies: "Technologies",
+      screenshotPending: "Screenshot still needed",
+      contentPending: "Content to confirm",
+    },
+    skills: {
+      title: "Technical Expertise",
+      description: "Technologies organized around my real professional profile, not a flat wall of logos.",
+    },
+    methodology: {
+      title: "How I Work",
+      description: "The process I follow to understand a problem and solve it without breaking what already works.",
+    },
+    education: {
+      title: "Education & Certifications",
+      description: "Complementary training alongside my professional experience.",
     },
     contact: {
-      title: "Me Contacter",
-      description: "Vous avez un projet en tête ? Travaillons ensemble !",
+      title: "Contact Me",
+      description: "Have an opportunity, a project, or a technical question? Reach out.",
       form: {
-        title: "Envoyer un Message",
-        description: "Remplissez le formulaire ci-dessous et je vous répondrai dès que possible.",
-        name: "Nom",
+        title: "Send a Message",
+        description: "Fill out the form and I'll get back to you shortly.",
+        name: "Name",
         email: "Email",
         message: "Message",
-        submit: "Envoyer le Message",
-        sending: "Envoi en cours...",
+        submit: "Send Message",
+        sending: "Sending...",
       },
       info: {
-        title: "Informations de Contact",
-        description: "N'hésitez pas à me contacter via l'un de ces canaux.",
+        title: "Contact Information",
+        description: "You can also reach me directly through these channels.",
         email: "Email",
-        phone: "Téléphone",
-        location: "Emplacement",
+        location: "Location",
       },
       success: {
-        title: "Message Envoyé !",
-        message: "Merci pour votre message. Je vous répondrai bientôt.",
+        title: "Message sent!",
+        message: "Thanks for reaching out. I'll get back to you shortly.",
       },
       error: {
-        title: "Erreur",
-        message: "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+        title: "Error",
+        message: "There was an error sending your message. Try again or email me directly.",
       },
     },
     footer: {
       about: {
-        title: "À Propos",
+        title: "About",
         description:
-          "Je suis un développeur passionné qui se concentre sur la création d'expériences web belles et fonctionnelles.",
+          "Developer and technical analyst focused on business systems, legacy application modernization, and Full Stack development.",
       },
-      links: {
-        title: "Liens Rapides",
-      },
-      social: {
-        title: "Réseaux Sociaux",
-      },
-      copyright: "Tous droits réservés.",
+      links: { title: "Quick Links" },
+      social: { title: "Social" },
+      copyright: "All rights reserved.",
     },
   },
-}
+} as const
 
-// Create context
+type Translations = typeof translations
+type TranslationValue = string | readonly string[]
+
 type LanguageContextType = {
-  language: string
-  setLanguage: (lang: string) => void
-  t: (key: string) => string
+  language: Locale
+  setLanguage: (lang: Locale) => void
+  t: (key: string) => TranslationValue
 }
 
 const LanguageContext = createContext<LanguageContextType>({
-  language: "en",
+  language: "es",
   setLanguage: () => {},
   t: () => "",
 })
 
-// Provider component
 type LanguageProviderProps = {
   children: ReactNode
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguage] = useState("en")
+function resolve(dict: unknown, keys: string[]): TranslationValue | undefined {
+  let value: unknown = dict
+  for (const key of keys) {
+    if (value && typeof value === "object" && key in value) {
+      value = (value as Record<string, unknown>)[key]
+    } else {
+      return undefined
+    }
+  }
+  return value as TranslationValue
+}
 
-  // Load language preference from localStorage on client side
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  const [language, setLanguage] = useState<Locale>("es")
+
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language")
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
+    const saved = localStorage.getItem("language")
+    if (saved === "es" || saved === "en") {
+      setLanguage(saved)
     }
   }, [])
 
-  // Save language preference to localStorage
   useEffect(() => {
     localStorage.setItem("language", language)
+    document.documentElement.lang = language
   }, [language])
 
-  // Translation function
-// Translation function
-const t = (key: string): string => {
-  const keys = key.split(".");
-  let value: any = translations[language as keyof typeof translations];
-
-  for (const k of keys) {
-    if (value && typeof value === "object" && k in value) {
-      value = value[k as keyof typeof value]; // Asegura el tipado correcto
-    } else {
-      // Fallback to English if translation not found
-      let fallback: any = translations.en;
-      for (const k of keys) {
-        if (fallback && typeof fallback === "object" && k in fallback) {
-          fallback = fallback[k as keyof typeof fallback];
-        } else {
-          return key; // Devuelve la clave si no hay traducción
-        }
-      }
-      return fallback as string;
-    }
+  const t = (key: string): TranslationValue => {
+    const keys = key.split(".")
+    const value = resolve(translations[language], keys)
+    if (value !== undefined) return value
+    const fallback = resolve(translations.es, keys)
+    return fallback !== undefined ? fallback : key
   }
-
-  return value as string;
-};
-
 
   return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>
 }
 
-// Custom hooks
 export const useLanguage = () => {
   const context = useContext(LanguageContext)
   if (!context) {
@@ -526,3 +287,4 @@ export const useTranslation = () => {
   return { t }
 }
 
+export type { Translations }
