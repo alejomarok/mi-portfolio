@@ -19,6 +19,8 @@ export interface SkillCategory {
   id: string
   title: Localized<string>
   items: string[]
+  /** Short professional practices related to the category, shown in a compact secondary row. */
+  capabilities?: Localized<string[]>
 }
 
 export interface ResponsibilityGroup {
@@ -37,7 +39,7 @@ export interface ExperienceItem {
   stack: string[]
 }
 
-export type ProjectCoverVariant = "indigo" | "teal" | "amber"
+export type ProjectCoverVariant = "primary" | "slate" | "warm"
 
 export interface ProjectItem {
   id: string
@@ -65,9 +67,13 @@ export interface ProjectItem {
   displayOrder: number
 }
 
+export type CertificationCategory = "database" | "backend" | "frontend" | "testing" | "language"
+
 export interface Certification {
   id: string
   title: Localized<string>
+  category: CertificationCategory
+  featured?: boolean
 }
 
 export interface MethodologyStep {

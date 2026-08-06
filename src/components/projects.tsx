@@ -2,15 +2,16 @@
 
 import { useState, type ReactNode } from "react"
 import { useLanguage, useTranslation } from "@/lib/i18n"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, ExternalLink, Github, ImageOff, Info } from "lucide-react"
 import { projects } from "@/data/projects"
 import type { ProjectItem } from "@/data/types"
 import ProjectCover from "@/components/project-cover"
+import ScrollReveal from "@/components/scroll-reveal"
+import SectionHeading from "@/components/section-heading"
 
-function ProjectCard({ project }: { project: ProjectItem }) {
+function ProjectCaseStudy({ project, reversed }: { project: ProjectItem; reversed: boolean }) {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const [expanded, setExpanded] = useState(false)
@@ -20,7 +21,6 @@ function ProjectCard({ project }: { project: ProjectItem }) {
     { label: t("projects.problem") as string, content: project.problem[language] },
     { label: t("projects.solution") as string, content: project.solution[language] },
     { label: t("projects.users") as string, content: project.users[language] },
-    { label: t("projects.role") as string, content: project.role[language] },
     {
       label: t("projects.features") as string,
       content: (
@@ -37,43 +37,52 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   ]
 
   return (
-    <Card className="overflow-hidden flex flex-col">
-      <div className="relative aspect-video overflow-hidden">
+    <ScrollReveal
+      as="article"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-start rounded-xl border bg-surface p-5 sm:p-8"
+    >
+      <div className={`relative aspect-video overflow-hidden rounded-lg border ${reversed ? "lg:order-2" : ""}`}>
         <ProjectCover name={project.name} variant={project.coverVariant} />
-        <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-background/80 px-2 py-1 text-xs text-muted-foreground backdrop-blur">
-          <ImageOff className="h-3 w-3" />
+        <div className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-md bg-background/85 px-2 py-1 text-xs text-muted-foreground backdrop-blur">
+          <ImageOff className="h-3 w-3" aria-hidden="true" />
           {t("projects.screenshotPending") as string}
         </div>
       </div>
-      <CardHeader className="pb-2">
-        <div className="flex items-center justify-between gap-2">
-          <CardTitle>{project.name}</CardTitle>
+
+      <div className={`flex flex-col ${reversed ? "lg:order-1" : ""}`}>
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <Badge variant="secondary">{project.category[language]}</Badge>
           <Badge variant="outline">{project.year}</Badge>
         </div>
-        <CardDescription>{project.subtitle[language]}</CardDescription>
-      </CardHeader>
-      <CardContent className="flex-grow space-y-3">
-        <Badge variant="secondary">{project.category[language]}</Badge>
-        <p className="text-sm text-muted-foreground">{project.shortDescription[language]}</p>
-        <div className="flex flex-wrap gap-2">
+
+        <h3 className="text-2xl font-bold tracking-tight">{project.name}</h3>
+        <p className="text-muted-foreground mt-1">{project.subtitle[language]}</p>
+        <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{project.shortDescription[language]}</p>
+
+        <p className="mt-4 text-sm">
+          <span className="font-semibold">{t("projects.role") as string}: </span>
+          <span className="text-muted-foreground">{project.role[language]}</span>
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 mt-4">
           {project.technologies.map((tech) => (
-            <Badge key={tech} variant="outline">
+            <Badge key={tech} variant="outline" className="font-normal">
               {tech}
             </Badge>
           ))}
         </div>
 
         {expanded && (
-          <div id={detailsId} className="pt-4 mt-4 border-t space-y-4">
+          <div id={detailsId} className="mt-6 pt-6 border-t space-y-5">
             {detailRows.map((row) => (
               <div key={row.label}>
                 <h4 className="text-sm font-semibold mb-1">{row.label}</h4>
-                <div className="text-sm text-muted-foreground">{row.content}</div>
+                <div className="text-sm text-muted-foreground leading-relaxed">{row.content}</div>
               </div>
             ))}
             {project.contentNote && (
               <div className="flex gap-2 rounded-md border border-dashed p-3 text-xs text-muted-foreground">
-                <Info className="h-4 w-4 shrink-0" />
+                <Info className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>
                   <strong>{t("projects.contentPending") as string}:</strong> {project.contentNote[language]}
                 </span>
@@ -81,36 +90,37 @@ function ProjectCard({ project }: { project: ProjectItem }) {
             )}
           </div>
         )}
-      </CardContent>
-      <CardFooter className="flex flex-wrap gap-2">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setExpanded((prev) => !prev)}
-          aria-expanded={expanded}
-          aria-controls={detailsId}
-        >
-          <ChevronDown className={`mr-2 h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} />
-          {expanded ? (t("projects.hideDetails") as string) : (t("projects.viewDetails") as string)}
-        </Button>
-        {project.liveUrl && (
-          <Button variant="outline" size="sm" asChild>
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" />
-              {t("projects.demo") as string}
-            </a>
+
+        <div className="flex flex-wrap gap-2 mt-6">
+          <Button
+            variant="outline"
+            onClick={() => setExpanded((prev) => !prev)}
+            aria-expanded={expanded}
+            aria-controls={detailsId}
+            className="w-full sm:w-auto"
+          >
+            <ChevronDown className={`mr-2 h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} />
+            {expanded ? (t("projects.hideDetails") as string) : (t("projects.viewDetails") as string)}
           </Button>
-        )}
-        {project.repositoryUrl && (
-          <Button variant="outline" size="sm" asChild>
-            <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
-              <Github className="mr-2 h-4 w-4" />
-              {t("projects.code") as string}
-            </a>
-          </Button>
-        )}
-      </CardFooter>
-    </Card>
+          {project.liveUrl && (
+            <Button variant="outline" asChild className="w-full sm:w-auto">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                {t("projects.demo") as string}
+              </a>
+            </Button>
+          )}
+          {project.repositoryUrl && (
+            <Button variant="outline" asChild className="w-full sm:w-auto">
+              <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="mr-2 h-4 w-4" />
+                {t("projects.code") as string}
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+    </ScrollReveal>
   )
 }
 
@@ -119,21 +129,12 @@ export default function Projects() {
   const sorted = [...projects].sort((a, b) => a.displayOrder - b.displayOrder)
 
   return (
-    <section id="projects" className="py-20 bg-muted/50">
+    <section id="projects" className="py-16 md:py-24 bg-surface-muted/50">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              {t("projects.title") as string}
-            </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              {t("projects.description") as string}
-            </p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {sorted.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <SectionHeading title={t("projects.title") as string} description={t("projects.description") as string} />
+        <div className="space-y-8 mt-12">
+          {sorted.map((project, index) => (
+            <ProjectCaseStudy key={project.id} project={project} reversed={index % 2 === 1} />
           ))}
         </div>
       </div>

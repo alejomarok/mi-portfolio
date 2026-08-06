@@ -61,14 +61,15 @@ const translations = {
     skills: {
       title: "Expertise Técnico",
       description: "Tecnologías organizadas según mi perfil profesional real, no una lista plana de logos.",
+      capabilities: "Práctica profesional",
     },
     methodology: {
       title: "Cómo Trabajo",
       description: "El proceso que sigo para entender un problema y resolverlo sin romper lo que ya funciona.",
     },
     education: {
-      title: "Formación y Certificaciones",
-      description: "Formación complementaria a mi experiencia profesional.",
+      title: "Certificaciones y Formación Complementaria",
+      description: "Formación complementaria a mis tres años de experiencia profesional en Recursos Informáticos.",
     },
     contact: {
       title: "Contáctame",
@@ -165,14 +166,15 @@ const translations = {
     skills: {
       title: "Technical Expertise",
       description: "Technologies organized around my real professional profile, not a flat wall of logos.",
+      capabilities: "Professional practice",
     },
     methodology: {
       title: "How I Work",
       description: "The process I follow to understand a problem and solve it without breaking what already works.",
     },
     education: {
-      title: "Education & Certifications",
-      description: "Complementary training alongside my professional experience.",
+      title: "Certifications & Additional Training",
+      description: "Complementary training alongside my three years of professional experience at Recursos Informáticos.",
     },
     contact: {
       title: "Contact Me",

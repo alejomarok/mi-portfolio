@@ -95,7 +95,7 @@ export const projects: ProjectItem[] = [
       en: "GAMAAN demonstrates my ability to take a business idea to a complete digital product with public and private areas, from product definition through deployment.",
     },
     year: "2024",
-    coverVariant: "indigo",
+    coverVariant: "primary",
     screenshotTodo: {
       es: "Agregar capturas reales: sitio público, simulador de crédito y panel administrativo.",
       en: "Add real screenshots: public site, credit simulator, and admin panel.",
@@ -162,7 +162,7 @@ export const projects: ProjectItem[] = [
       en: "AutoGlobal demonstrates my ability to translate a commercial brand identity into an organized, responsive, conversion-oriented interface.",
     },
     year: "2024",
-    coverVariant: "amber",
+    coverVariant: "warm",
     screenshotTodo: {
       es: "Agregar capturas reales: home institucional, catálogo y vista de detalle de vehículo.",
       en: "Add real screenshots: institutional home, catalog, and vehicle detail view.",
@@ -235,7 +235,7 @@ export const projects: ProjectItem[] = [
       en: "Pactum demonstrates my ability to build the technical foundation of a product with real authentication: protected routes, session handling, and a component architecture ready to scale.",
     },
     year: "2024",
-    coverVariant: "teal",
+    coverVariant: "slate",
     screenshotTodo: {
       es: "Agregar capturas reales: login y dashboard privado.",
       en: "Add real screenshots: login and private dashboard.",

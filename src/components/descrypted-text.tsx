@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 interface DecryptedTextProps {
     text: string
@@ -27,7 +27,7 @@ export default function DecryptedText({
     className = '',
     parentClassName = '',
     encryptedClassName = '',
-    animateOn = 'hover',
+    animateOn = 'view',
     ...props
 }: DecryptedTextProps) {
     const [displayText, setDisplayText] = useState<string>(text)
@@ -36,8 +36,10 @@ export default function DecryptedText({
     const [revealedIndices, setRevealedIndices] = useState<Set<number>>(new Set())
     const [hasAnimated, setHasAnimated] = useState<boolean>(false)
     const containerRef = useRef<HTMLSpanElement>(null)
+    const prefersReducedMotion = useReducedMotion()
 
     useEffect(() => {
+        if (prefersReducedMotion) return
         let interval: NodeJS.Timeout
         let currentIteration = 0
 
@@ -157,6 +159,7 @@ export default function DecryptedText({
         revealDirection,
         characters,
         useOriginalCharsOnly,
+        prefersReducedMotion,
     ])
 
     useEffect(() => {
@@ -203,12 +206,12 @@ export default function DecryptedText({
             {...hoverProps}
             {...props}
         >
-            <span className="sr-only">{displayText}</span>
+            <span className="sr-only">{text}</span>
 
             <span aria-hidden="true">
                 {displayText.split('').map((char, index) => {
                     const isRevealedOrDone =
-                        revealedIndices.has(index) || !isScrambling || !isHovering
+                        prefersReducedMotion || revealedIndices.has(index) || !isScrambling || !isHovering
 
                     return (
                         <span

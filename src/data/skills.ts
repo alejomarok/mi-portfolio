@@ -1,40 +1,40 @@
 import type { SkillCategory } from "./types"
 
-// Ordered to foreground the profile's real strengths first: Oracle/legacy
-// systems, then databases, then modern full-stack technologies and tooling.
+// Six balanced categories (3x2 desktop grid). Badges stay to short,
+// identifiable technologies; broader professional practices live in each
+// category's optional `capabilities` list, rendered as a compact secondary row.
 export const skillCategories: SkillCategory[] = [
   {
-    id: "enterprise-legacy",
-    title: { es: "Sistemas Empresariales y Legacy", en: "Enterprise & Legacy Systems" },
+    id: "oracle-legacy",
+    title: { es: "Oracle y Sistemas Legacy", en: "Oracle & Legacy Systems" },
     items: [
+      "Oracle PL/SQL",
+      "Oracle Database",
       "OpenText Gupta",
       "Centura Team Developer",
-      "Oracle PL/SQL",
       "SQLBase",
       "Reportes QRP",
-      "Mantenimiento de aplicaciones legacy",
-      "Ingeniería inversa",
-      "Análisis de incidentes en producción",
-      "Generación de etiquetas ZPL e integración con impresoras",
+      "ZPL",
+      "Sistemas Legacy",
     ],
+    capabilities: {
+      es: ["Ingeniería inversa", "Análisis de incidentes en producción", "Modernización de sistemas legacy"],
+      en: ["Reverse engineering", "Production incident analysis", "Legacy modernization"],
+    },
   },
   {
-    id: "databases-cloud",
-    title: { es: "Bases de Datos y Cloud", en: "Databases & Cloud" },
+    id: "backend",
+    title: { es: "Backend y APIs", en: "Backend & APIs" },
     items: [
-      "Oracle Database",
-      "PostgreSQL",
-      "MySQL",
-      "MongoDB",
-      "Firebase Authentication",
-      "Cloud Firestore",
-      "Firebase Storage",
+      "Node.js",
+      "Express",
+      "REST APIs",
+      "Java",
+      "Spring Boot",
+      "Autenticación",
+      "Autorización",
+      "Integraciones externas",
     ],
-  },
-  {
-    id: "languages",
-    title: { es: "Lenguajes", en: "Languages" },
-    items: ["JavaScript", "TypeScript", "SQL", "PL/SQL", "Java", "PHP"],
   },
   {
     id: "frontend",
@@ -52,21 +52,26 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    id: "backend",
-    title: { es: "Backend", en: "Backend" },
+    id: "databases-cloud",
+    title: { es: "Bases de Datos y Cloud", en: "Databases & Cloud" },
     items: [
-      "Node.js",
-      "Express",
-      "REST APIs",
-      "Java y Spring Boot",
-      "Desarrollo de lógica de negocio",
-      "Autenticación y autorización",
-      "Integración con servicios externos",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Cloud Firestore",
+      "Firebase Authentication",
+      "Firebase Storage",
+      "Vercel",
     ],
   },
   {
+    id: "languages",
+    title: { es: "Lenguajes", en: "Languages" },
+    items: ["JavaScript", "TypeScript", "SQL", "PL/SQL", "Java", "PHP"],
+  },
+  {
     id: "tools",
-    title: { es: "Herramientas y Flujo de Trabajo", en: "Tools & Workflow" },
+    title: { es: "Herramientas y Prácticas Profesionales", en: "Tools & Professional Practices" },
     items: [
       "Git",
       "GitHub",
@@ -74,12 +79,11 @@ export const skillCategories: SkillCategory[] = [
       "Jira",
       "Postman",
       "Axios",
-      "Vercel",
       "Visual Studio Code",
       "Testing de APIs",
-      "Documentación técnica",
+      "Code Review",
       "Análisis funcional",
-      "Code review",
+      "Documentación técnica",
     ],
   },
 ]

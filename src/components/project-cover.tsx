@@ -1,15 +1,15 @@
 import type { ProjectCoverVariant } from "@/data/types"
 
 const gradients: Record<ProjectCoverVariant, string> = {
-  indigo: "from-indigo-500/25 via-indigo-400/10 to-background",
-  teal: "from-teal-500/25 via-teal-400/10 to-background",
-  amber: "from-amber-500/25 via-amber-400/10 to-background",
+  primary: "from-cyan-500/20 via-cyan-400/8 to-background",
+  slate: "from-slate-500/20 via-slate-400/8 to-background",
+  warm: "from-stone-500/20 via-stone-400/8 to-background",
 }
 
 const textColors: Record<ProjectCoverVariant, string> = {
-  indigo: "text-indigo-600 dark:text-indigo-400",
-  teal: "text-teal-600 dark:text-teal-400",
-  amber: "text-amber-600 dark:text-amber-400",
+  primary: "text-cyan-700 dark:text-cyan-400",
+  slate: "text-slate-600 dark:text-slate-300",
+  warm: "text-stone-600 dark:text-stone-300",
 }
 
 export default function ProjectCover({ name, variant }: { name: string; variant: ProjectCoverVariant }) {
@@ -23,7 +23,7 @@ export default function ProjectCover({ name, variant }: { name: string; variant:
   return (
     <div className={`relative flex h-full w-full items-center justify-center bg-gradient-to-br ${gradients[variant]}`}>
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-30"
         style={{
           backgroundImage:
             "linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)",

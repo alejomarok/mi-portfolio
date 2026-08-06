@@ -51,6 +51,14 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        surface: {
+          DEFAULT: "hsl(var(--surface))",
+          foreground: "hsl(var(--surface-foreground))",
+        },
+        "surface-muted": {
+          DEFAULT: "hsl(var(--surface-muted))",
+          foreground: "hsl(var(--surface-muted-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)", // Definir los radio de los bordes

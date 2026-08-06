@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, CSSProperties } from "react";
+import React, { useRef, useEffect, useState, CSSProperties } from "react";
 
 class Grad {
   x: number;
@@ -201,6 +201,21 @@ const Waves: React.FC<WavesProps> = ({
   });
 
   const frameIdRef = useRef<number | null>(null);
+  const visibleRef = useRef(true);
+  const [shouldAnimate, setShouldAnimate] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const smallScreenQuery = window.matchMedia("(max-width: 640px)");
+    const update = () => setShouldAnimate(!reducedMotionQuery.matches && !smallScreenQuery.matches);
+    update();
+    reducedMotionQuery.addEventListener("change", update);
+    smallScreenQuery.addEventListener("change", update);
+    return () => {
+      reducedMotionQuery.removeEventListener("change", update);
+      smallScreenQuery.removeEventListener("change", update);
+    };
+  }, []);
 
   useEffect(() => {
     configRef.current = {
@@ -229,6 +244,7 @@ const Waves: React.FC<WavesProps> = ({
   ]);
 
   useEffect(() => {
+    if (!shouldAnimate) return;
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -355,6 +371,10 @@ const Waves: React.FC<WavesProps> = ({
 
     function tick(t: number) {
       if (!container) return;
+      if (!visibleRef.current) {
+        frameIdRef.current = requestAnimationFrame(tick);
+        return;
+      }
       const mouse = mouseRef.current;
       mouse.sx += (mouse.x - mouse.sx) * 0.1;
       mouse.sy += (mouse.y - mouse.sy) * 0.1;
@@ -405,21 +425,41 @@ const Waves: React.FC<WavesProps> = ({
     frameIdRef.current = requestAnimationFrame(tick);
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 },
+    );
+    visibilityObserver.observe(container);
 
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
+      visibilityObserver.disconnect();
       if (frameIdRef.current !== null) {
         cancelAnimationFrame(frameIdRef.current);
       }
     };
-  }, []);
+  }, [shouldAnimate]);
+
+  if (!shouldAnimate) {
+    return (
+      <div
+        aria-hidden="true"
+        style={{ backgroundColor, ...style }}
+        className={`absolute top-0 left-0 w-full h-full overflow-hidden ${className}`}
+      />
+    );
+  }
 
   return (
     <div
       ref={containerRef}
+      aria-hidden="true"
       style={{
         backgroundColor,
         ...style,
@@ -427,8 +467,9 @@ const Waves: React.FC<WavesProps> = ({
       className={`absolute top-0 left-0 w-full h-full overflow-hidden ${className}`}
     >
       <div
-        className="absolute top-0 left-0 bg-[#160000] rounded-full w-[0.5rem] h-[0.5rem]"
+        className="absolute top-0 left-0 rounded-full w-2 h-2"
         style={{
+          background: "hsl(var(--primary) / 0.35)",
           transform:
             "translate3d(calc(var(--x) - 50%), calc(var(--y) - 50%), 0)",
           willChange: "transform",

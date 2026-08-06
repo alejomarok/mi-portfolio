@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Mail, MapPin, Send, Loader2, Github, Linkedin } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
 import { site, socialLinks } from "@/data/site"
+import SectionHeading from "./section-heading"
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -58,18 +59,9 @@ export default function Contact() {
   const github = socialLinks.find((link) => link.icon === "github")
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-16 md:py-24">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              {t("contact.title") as string}
-            </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              {t("contact.description") as string}
-            </p>
-          </div>
-        </div>
+        <SectionHeading title={t("contact.title") as string} description={t("contact.description") as string} />
         <div className="mx-auto max-w-5xl mt-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>

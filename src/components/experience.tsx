@@ -5,31 +5,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react"
 import { experience } from "@/data/experience"
+import ScrollReveal from "./scroll-reveal"
+import SectionHeading from "./section-heading"
 
 export default function Experience() {
   const { t } = useTranslation()
   const { language } = useLanguage()
 
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-16 md:py-24">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              {t("experience.title") as string}
-            </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              {t("experience.description") as string}
-            </p>
-          </div>
-        </div>
+        <SectionHeading title={t("experience.title") as string} description={t("experience.description") as string} />
 
         <div className="mt-12 space-y-10">
           {experience.map((job) => (
-            <div key={job.id} className="relative pl-6 border-l-2 border-primary/30">
-              <span className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-primary" aria-hidden="true" />
+            <ScrollReveal key={job.id} as="div" className="relative pl-6 border-l-2 border-primary/30">
+              <span className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-primary ring-4 ring-background" aria-hidden="true" />
 
-              <Card className="overflow-hidden">
+              <Card className="overflow-hidden border-border/80">
                 <CardHeader className="pb-2">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div>
@@ -82,7 +75,7 @@ export default function Experience() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

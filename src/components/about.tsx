@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { FileDown } from "lucide-react"
 import ScrollReveal from "./scroll-reveal"
+import SectionHeading from "./section-heading"
 import { site } from "@/data/site"
 
 export default function About() {
@@ -18,19 +19,12 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="py-16 md:py-24 bg-surface-muted/50">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <ScrollReveal baseOpacity={0} enableBlur baseRotation={10} blurStrength={15} containerClassName="my-5">
-              {t("about.title") as string}
-            </ScrollReveal>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("about.subtitle") as string}</p>
-          </div>
-        </div>
+        <SectionHeading title={t("about.title") as string} description={t("about.subtitle") as string} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 items-center">
-          <div className="relative overflow-hidden rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 items-start">
+          <ScrollReveal as="div" className="relative overflow-hidden rounded-lg border">
             <Image
               src="/profile.jpeg"
               alt="Alejo Marcó"
@@ -38,17 +32,19 @@ export default function About() {
               height={600}
               className="object-cover w-full h-full transition-transform img-hover"
             />
-          </div>
+          </ScrollReveal>
 
           <div className="space-y-6">
-            {paragraphs.map((paragraph, index) => (
-              <ScrollReveal key={index} baseOpacity={1} enableBlur baseRotation={10} blurStrength={10} textClassName="text-lg">
-                {paragraph}
-              </ScrollReveal>
-            ))}
+            <div className="space-y-4">
+              {paragraphs.map((paragraph, index) => (
+                <ScrollReveal key={index} as="p" delay={index * 60} className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {paragraph}
+                </ScrollReveal>
+              ))}
+            </div>
 
-            <div>
-              <h4 className="text-lg font-semibold mb-3">{t("about.quickFacts.title") as string}</h4>
+            <div className="rounded-lg border bg-surface p-5">
+              <h3 className="text-sm font-semibold mb-3">{t("about.quickFacts.title") as string}</h3>
               <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {quickFacts.map((fact) => (
                   <div key={fact.label}>
@@ -59,14 +55,12 @@ export default function About() {
               </dl>
             </div>
 
-            <div className="mt-6">
-              <Button asChild>
-                <a href={site.resumeUrl} download>
-                  <FileDown className="mr-2 h-4 w-4" />
-                  {t("about.downloadCV") as string}
-                </a>
-              </Button>
-            </div>
+            <Button asChild>
+              <a href={site.resumeUrl} download>
+                <FileDown className="mr-2 h-4 w-4" />
+                {t("about.downloadCV") as string}
+              </a>
+            </Button>
           </div>
         </div>
       </div>
