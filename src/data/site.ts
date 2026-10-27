@@ -11,6 +11,8 @@ export const site = {
     en: "Córdoba, Argentina",
   },
   email: "alejom1999@gmail.com",
+  phone: "+54 3571 662505",
+  whatsappUrl: "https://wa.me/5493571662505",
   resumeUrl: "/cv/alejo-marco-fullstack-es.pdf",
   resumeEnUrl: "/cv/alejo-marco-fullstack-en.pdf",
   resumeTextUrl: "/cv/alejo-marco-fullstack-es.txt",

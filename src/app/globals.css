@@ -256,6 +256,7 @@ details:not([open]) > :not(summary) { display: none; }
 .contact-email:hover { text-decoration: underline; text-underline-offset: 5px; }
 .contact-section .icon-button:hover { background: #e4cf0e; }
 .copy-status { font-size: var(--type-small); height: 24px; margin-top: 4px; }
+.contact-whatsapp { margin-bottom: 20px; }
 .contact-socials,.resume-links { display: flex; flex-wrap: wrap; gap: 24px; }
 .resume-links { margin-top: 20px; font-size: var(--type-small); }
 .resume-links a { min-height: 44px; display: inline-flex; align-items: center; }
