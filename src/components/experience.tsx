@@ -1,84 +1,39 @@
 "use client"
 
-import { useLanguage, useTranslation } from "@/lib/i18n"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react"
-import { experience } from "@/data/experience"
+import { useLanguage } from "@/lib/i18n"
+import { experience, professionalHighlights } from "@/data/experience"
+import { methodologySteps } from "@/data/methodology"
 import ScrollReveal from "./scroll-reveal"
-import SectionHeading from "./section-heading"
 
 export default function Experience() {
-  const { t } = useTranslation()
   const { language } = useLanguage()
-
-  return (
-    <section id="experience" className="py-16 md:py-24">
-      <div className="container px-4 md:px-6">
-        <SectionHeading title={t("experience.title") as string} description={t("experience.description") as string} />
-
-        <div className="mt-12 space-y-10">
-          {experience.map((job) => (
-            <ScrollReveal key={job.id} as="div" className="relative pl-6 border-l-2 border-primary/30">
-              <span className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-primary ring-4 ring-background" aria-hidden="true" />
-
-              <Card className="overflow-hidden border-border/80">
-                <CardHeader className="pb-2">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                    <div>
-                      <CardTitle className="text-xl">{job.role[language]}</CardTitle>
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-muted-foreground mt-1 text-sm">
-                        <span className="flex items-center">
-                          <Briefcase className="mr-2 h-4 w-4" />
-                          {job.company}
-                        </span>
-                        <span className="flex items-center">
-                          <MapPin className="mr-2 h-4 w-4" />
-                          {job.location[language]}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-muted-foreground text-sm">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      <span>{job.period[language]}</span>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <p className="text-muted-foreground">{job.summary[language]}</p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {job.responsibilityGroups.map((group) => (
-                      <div key={group.title[language]}>
-                        <h4 className="font-semibold mb-2">{group.title[language]}</h4>
-                        <ul className="space-y-1.5">
-                          {group.items[language].map((item) => (
-                            <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                              <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div>
-                    <p className="text-sm font-medium mb-2">{t("experience.stackLabel") as string}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {job.stack.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-          ))}
+  const en = language === "en"
+  const current = experience[0]
+  return <section id="experience" className="experience-section section-space page-frame" aria-labelledby="experience-heading">
+    <div className="section-heading-row">
+      <ScrollReveal><h2 id="experience-heading">{en ? "Professional experience" : "Experiencia profesional"}</h2></ScrollReveal>
+      <ScrollReveal delay={80}><p>{en ? "Business-critical systems.\nReal responsibility in production." : "Sistemas críticos para empresas.\nResponsabilidad real en producción."}</p></ScrollReveal>
+    </div>
+    <div className="career-list">
+      <article className="career-featured" aria-labelledby="employer-heading">
+      <div className="career-row">
+        <div className="career-content">
+          <h3 id="employer-heading" className="career-company">{current.company}</h3><p className="career-position">{current.role[language]}</p>
+          <p className="career-period">{en ? "May 2023 — Present · Córdoba, Argentina" : "Mayo 2023 — Actualidad · Córdoba, Argentina"}</p>
+          <p>{en ? "I combine technical leadership, development, and functional analysis in enterprise systems used by multiple companies. I work on business rules, Oracle databases, and production workflows, understanding the dependencies behind each change." : "Combino liderazgo técnico, desarrollo y análisis funcional en sistemas empresariales utilizados por distintas compañías. Trabajo sobre reglas de negocio, bases de datos Oracle y procesos de producción, entendiendo las dependencias detrás de cada cambio."}</p>
         </div>
       </div>
-    </section>
-  )
+      <div className="career-highlights">{professionalHighlights.map((highlight,index) => <ScrollReveal key={highlight.title.es} delay={index*65}><h4>{highlight.title[language]}</h4><p>{highlight.description[language]}</p></ScrollReveal>)}</div>
+      <p className="career-stack">Oracle PL/SQL · SQLBase · Centura / OpenText Gupta · React · Git · Jira</p>
+          <details className="editorial-details"><summary>{en ? "My work in detail" : "Mi trabajo en detalle"}<span aria-hidden="true">+</span></summary>
+            <div className="details-body"><p>{current.summary[language]}</p>{current.responsibilityGroups.map(group => <div key={group.title.es}><h4>{group.title[language]}</h4><ul>{group.items[language].map(item => <li key={item}>{item}</li>)}</ul></div>)}<p>{current.stack.join(" · ")}</p></div>
+          </details>
+      </article>
+      <ScrollReveal className="career-row" delay={80}>
+        <div className="career-meta"><p>{en ? "February 2022 — Present" : "Febrero 2022 — Actualidad"}</p><p>{en ? "Freelance & personal projects" : "Freelance y proyectos personales"}</p></div>
+        <div className="career-content"><h3>{en ? "Full Stack Developer" : "Desarrollador Full Stack"}</h3><p className="company-name">{en ? "Independent development" : "Desarrollo independiente"}</p><p>{en ? "Management systems, e-commerce, and business applications. I connect interfaces, authentication, databases, and administrative workflows in AutoGlobal, Chaioboutique, GAMAAN, and Pactum, organizing the information and tasks each business needs." : "Sistemas de gestión, e-commerce y aplicaciones de negocio. Conecto interfaces, autenticación, bases de datos y flujos administrativos en AutoGlobal, Chaioboutique, GAMAAN y Pactum, ordenando la información y las tareas que necesita cada negocio."}</p></div>
+      </ScrollReveal>
+    </div>
+    <details className="editorial-details methodology-details"><summary>{en ? "How I approach a project" : "Cómo encaro un proyecto"}<span aria-hidden="true">+</span></summary><ol className="method-list">{methodologySteps.map(step => <li key={step.id}><p className="method-title">{step.title[language]}</p><p>{step.description[language]}</p></li>)}</ol></details>
+  </section>
 }

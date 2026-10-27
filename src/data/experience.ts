@@ -1,4 +1,23 @@
-import type { ExperienceItem } from "./types"
+import type { ExperienceItem, Localized } from "./types"
+
+export const professionalHighlights: {title: Localized<string>; description: Localized<string>}[] = [
+  {
+    title: {es:"Oracle y lógica de negocio", en:"Oracle & business logic"},
+    description: {es:"Desarrollo y optimización de consultas, procedimientos, funciones y paquetes en SQL y PL/SQL. Datos y reglas que sostienen los procesos administrativos de las empresas.", en:"SQL and PL/SQL query, procedure, function, and package development and optimization. Data and rules supporting business administration."},
+  },
+  {
+    title: {es:"Liderazgo técnico", en:"Technical leadership"},
+    description: {es:"Guía al equipo, revisión de código y análisis funcional. Trabajo con desarrolladores, soporte y clientes para convertir requerimientos en soluciones mantenibles.", en:"Team guidance, code reviews, and functional analysis. Working with developers, support teams, and clients to turn requirements into maintainable solutions."},
+  },
+  {
+    title: {es:"Resolución en producción", en:"Production problem solving"},
+    description: {es:"Investigación de incidentes, análisis de causas y dependencias, implementación de mejoras y validación de cambios sobre software empresarial crítico.", en:"Incident investigation, root-cause and dependency analysis, improvements, and change validation in business-critical software."},
+  },
+  {
+    title: {es:"Ingeniería inversa y modernización", en:"Reverse engineering & modernization"},
+    description: {es:"Comprensión de sistemas Centura y Gupta con 20 a 30 años de historia y documentación limitada. Modernización gradual de áreas seleccionadas con React.", en:"Understanding Centura and Gupta systems with 20 to 30 years of history and limited documentation. Gradual modernization of selected areas with React."},
+  },
+]
 
 export const experience: ExperienceItem[] = [
   {

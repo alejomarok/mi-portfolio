@@ -1,52 +1,22 @@
 "use client"
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode, type Ref } from "react"
-import { useReducedMotion } from "framer-motion"
+import { useEffect, useRef, type ElementType, type ReactNode, type Ref } from "react"
 
-interface ScrollRevealProps {
-  children: ReactNode
-  as?: ElementType
-  className?: string
-  /** Stagger delay in ms, useful for related siblings (cards, list items). */
-  delay?: number
-}
+interface ScrollRevealProps { children: ReactNode; as?: ElementType; className?: string; delay?: number }
 
 export default function ScrollReveal({ children, as: Tag = "div", className = "", delay = 0 }: ScrollRevealProps) {
   const ref = useRef<HTMLElement>(null)
-  const [visible, setVisible] = useState(false)
-  const prefersReducedMotion = useReducedMotion()
-
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setVisible(true)
-      return
-    }
-
     const node = ref.current
-    if (!node) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
-    )
+    if (!node || !window.IntersectionObserver || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        node.animate([{ opacity: 0.55, transform: "translateY(24px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 760, delay, easing: "cubic-bezier(.16,1,.3,1)", fill: "backwards" })
+        observer.unobserve(node)
+      }
+    }, { threshold: 0.08 })
     observer.observe(node)
     return () => observer.disconnect()
-  }, [prefersReducedMotion])
-
-  return (
-    <Tag
-      ref={ref as Ref<HTMLElement>}
-      className={`transition-reveal ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-      } ${className}`}
-      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
-    >
-      {children}
-    </Tag>
-  )
+  }, [delay])
+  return <Tag ref={ref as Ref<HTMLElement>} className={className}>{children}</Tag>
 }

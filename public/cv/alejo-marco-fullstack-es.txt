@@ -1,0 +1,58 @@
+Alejo Marcó
+Desarrollador Full Stack | React, Next.js, Node.js y SQL
+Córdoba, Argentina | +54 3571-662505 | alejom1999@gmail.com
+GitHub: github.com/alejomarok
+LinkedIn: linkedin.com/in/alejo-marcó-3ba973221
+
+PERFIL PROFESIONAL
+Desarrollador Full Stack y líder técnico con experiencia en sistemas empresariales y productos web. Conecto interfaces, APIs, autenticación y bases de datos para resolver necesidades de negocio y ordenar procesos de gestión. Trabajo con Oracle SQL y PL/SQL, React, Next.js, TypeScript y Node.js. Uso Codex y Claude para explorar ideas y encontrar soluciones viables a problemas complejos.
+
+EXPERIENCIA PROFESIONAL
+Líder Técnico / Analista Programador - Recursos Informáticos
+Mayo 2023 - Actualidad | Córdoba, Argentina
+- Análisis funcional, desarrollo y mantenimiento de software empresarial crítico con Centura y OpenText Gupta Team Developer; ingeniería inversa de módulos con documentación limitada.
+- Desarrollo y optimización en Oracle SQL y PL/SQL: consultas, procedimientos, funciones, paquetes y lógica de negocio; reportes, exportaciones y procesos administrativos.
+- Investigación y resolución de incidentes de producción, análisis de dependencias y pruebas de cambios en sistemas con décadas de operación.
+- Guía técnica, revisión de código y colaboración con desarrollo, soporte y clientes. Modernización gradual de áreas seleccionadas con React.
+Desarrollador Full Stack - Proyectos freelance y personales
+Febrero 2022 - Actualidad
+- Desarrollo de aplicaciones web y sistemas de gestión: catálogo, inventario, pedidos, créditos y trámites, con interfaces públicas y áreas administrativas.
+- Integración de autenticación, permisos, formularios validados y persistencia de datos con Firebase o PostgreSQL y Prisma, según el proyecto.
+
+HABILIDADES TÉCNICAS
+Bases de datos: Oracle Database, SQL, PL/SQL, PostgreSQL, MySQL, MongoDB, SQLBase, Cloud Firestore; modelado y optimización de consultas.
+Backend: Node.js, Express, APIs REST, Java, Spring Boot, autenticación, autorización e integraciones externas.
+Frontend: React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS, Material UI, Bootstrap, Vite, React Hook Form, Zod.
+Datos y cloud: Prisma, Supabase, Firebase Authentication, Firebase Storage, Better Auth, Vercel.
+Herramientas y calidad: Git, GitHub, GitFlow, Jira, Postman, Axios, Visual Studio Code, testing de APIs, Vitest, Playwright, revisión de código y documentación técnica.
+IA: Codex y Claude para ideación, exploración de alternativas y resolución de problemas complejos.
+Otras tecnologías: PHP, OpenText Gupta, Centura Team Developer, reportes QRP, ZPL; análisis funcional y modernización de sistemas legacy.
+
+PROYECTOS SELECCIONADOS
+AutoGlobal - Gestión de concesionaria y catálogo
+React, JavaScript, Material UI, Firebase, React Router, Tailwind CSS
+- Catálogo público conectado con administración de vehículos: altas, edición, stock, reservas y ventas, con acceso administrativo por rol.
+- Paneles de stock y estadísticas con filtros por período, consultas por WhatsApp y exportaciones a PDF y Excel. La carga operativa de stock funciona de forma independiente de la analítica.
+Chaioboutique - Gestión comercial, e-commerce y punto de venta
+Next.js, React, TypeScript, PostgreSQL, Prisma, Better Auth, Zod, Vitest, Playwright
+- Aplicación modular que conecta tienda pública, cuentas, administración, catálogo, inventario, pedidos y punto de venta.
+- Integración entre interfaz y datos relacionales, con sesiones, permisos y validación de formularios en cliente y servidor. Flujo de checkout e integración con Mercado Pago.
+GAMAAN - Plataforma financiera y gestión de créditos
+React, Vite, TypeScript, Firebase Authentication, Cloud Firestore, Firebase Storage, EmailJS
+- Responsable del producto desde la definición funcional hasta el despliegue: simulación, solicitud, evaluación y seguimiento de créditos.
+- Modelado de datos y áreas privadas para usuarios, agencias y administradores, con permisos por rol, estados de solicitud, panel administrativo y notificaciones.
+Pactum - Gestión de trámites y documentación
+Next.js, React, TypeScript, Firebase, Firebase Admin, React Hook Form, Zod
+- Solicitudes guiadas y expediente digital con datos, documentación, firmantes y un área privada de seguimiento.
+- Circuito administrativo con revisión, costos, pagos y estados; transiciones permitidas e historial de acciones por trámite.
+
+FORMACIÓN
+Formación en CoderHouse, Udemy y EducaciónIT: desarrollo web, JavaScript, backend con Node.js, SQL, Oracle PL/SQL y testing QA manual.
+Universidad Nacional de Córdoba - Licenciatura en Comunicación Social, en curso.
+
+OTROS PROYECTOS
+ZPL Label Designer: edición visual de etiquetas para impresoras Zebra con React.
+Heyday Reminders: recordatorios, contactos y notificaciones con React Native y Expo.
+
+IDIOMAS
+Español: nativo. Inglés: intermedio oral y escrito.

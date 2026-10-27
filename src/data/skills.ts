@@ -1,8 +1,6 @@
 import type { SkillCategory } from "./types"
 
-// Six balanced categories (3x2 desktop grid). Badges stay to short,
-// identifiable technologies; broader professional practices live in each
-// category's optional `capabilities` list, rendered as a compact secondary row.
+// Technologies and practices backed by the profile and project sources.
 export const skillCategories: SkillCategory[] = [
   {
     id: "oracle-legacy",
@@ -44,10 +42,15 @@ export const skillCategories: SkillCategory[] = [
       "Next.js",
       "HTML5",
       "CSS3",
+      "Ajax",
       "Tailwind CSS",
       "Material UI",
       "Bootstrap",
       "Vite",
+      "React Hook Form",
+      "Zod",
+      "React Native",
+      "Expo",
       "Diseño responsivo",
     ],
   },
@@ -55,6 +58,8 @@ export const skillCategories: SkillCategory[] = [
     id: "databases-cloud",
     title: { es: "Bases de Datos y Cloud", en: "Databases & Cloud" },
     items: [
+      "Oracle Database",
+      "SQL / PL/SQL",
       "PostgreSQL",
       "MySQL",
       "MongoDB",
@@ -62,12 +67,28 @@ export const skillCategories: SkillCategory[] = [
       "Firebase Authentication",
       "Firebase Storage",
       "Vercel",
+      "Prisma",
+      "Supabase",
+      "Better Auth",
     ],
+    capabilities: {
+      es: ["Modelado de datos", "Optimización de consultas", "Procedimientos, funciones y paquetes", "Reglas de acceso"],
+      en: ["Data modeling", "Query optimization", "Procedures, functions, and packages", "Access rules"],
+    },
   },
   {
     id: "languages",
     title: { es: "Lenguajes", en: "Languages" },
     items: ["JavaScript", "TypeScript", "SQL", "PL/SQL", "Java", "PHP"],
+  },
+  {
+    id: "ai",
+    title: { es: "IA aplicada al trabajo", en: "AI-assisted work" },
+    items: ["Codex", "Claude"],
+    capabilities: {
+      es: ["Exploración de ideas", "Comparación de alternativas", "Resolución de problemas complejos"],
+      en: ["Idea exploration", "Comparing approaches", "Complex problem solving"],
+    },
   },
   {
     id: "tools",
@@ -81,6 +102,8 @@ export const skillCategories: SkillCategory[] = [
       "Axios",
       "Visual Studio Code",
       "Testing de APIs",
+      "Vitest",
+      "Playwright",
       "Code Review",
       "Análisis funcional",
       "Documentación técnica",

@@ -251,14 +251,14 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Locale>("es")
 
   useEffect(() => {
-    const saved = localStorage.getItem("language")
-    if (saved === "es" || saved === "en") {
-      setLanguage(saved)
-    }
+    try {
+      const saved = localStorage.getItem("language")
+      if (saved === "es" || saved === "en") setLanguage(saved)
+    } catch { /* The page remains usable when storage is unavailable. */ }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("language", language)
+    try { localStorage.setItem("language", language) } catch { /* Optional persistence. */ }
     document.documentElement.lang = language
   }, [language])
 

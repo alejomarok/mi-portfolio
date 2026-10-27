@@ -3,28 +3,25 @@ import type { NavItem, SocialLink } from "./types"
 export const site = {
   name: "Alejo Marcó",
   role: {
-    es: "Líder Técnico y Desarrollador de Software",
-    en: "Technical Lead & Software Developer",
+    es: "Desarrollador Full Stack",
+    en: "Full Stack Developer",
   },
   location: {
     es: "Córdoba, Argentina",
     en: "Córdoba, Argentina",
   },
   email: "alejom1999@gmail.com",
-  /**
-   * TODO: copy the real CV into public/cv-alejo-marco.pdf — the download
-   * button is wired to this path but the file does not exist yet.
-   */
-  resumeUrl: "/cv-alejo-marco.pdf",
+  resumeUrl: "/cv/alejo-marco-fullstack-es.pdf",
+  resumeEnUrl: "/cv/alejo-marco-fullstack-en.pdf",
+  resumeTextUrl: "/cv/alejo-marco-fullstack-es.txt",
+  resumeEnTextUrl: "/cv/alejo-marco-fullstack-en.txt",
 }
 
 export const navigation: NavItem[] = [
-  { href: "#home", label: { es: "Inicio", en: "Home" } },
-  { href: "#about", label: { es: "Sobre mí", en: "About" } },
   { href: "#experience", label: { es: "Experiencia", en: "Experience" } },
   { href: "#projects", label: { es: "Proyectos", en: "Projects" } },
-  { href: "#skills", label: { es: "Habilidades", en: "Skills" } },
-  { href: "#contact", label: { es: "Contacto", en: "Contact" } },
+  { href: "#about", label: { es: "Perfil", en: "About" } },
+  { href: "#skills", label: { es: "Stack", en: "Stack" } },
 ]
 
 export const socialLinks: SocialLink[] = [

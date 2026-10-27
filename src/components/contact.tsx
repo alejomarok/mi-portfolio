@@ -1,163 +1,68 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
-import { useTranslation } from "@/lib/i18n"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Mail, MapPin, Send, Loader2, Github, Linkedin } from "lucide-react"
-import { toast } from "@/hooks/use-toast"
+import { useRef, useState, type FormEvent } from "react"
+import { ArrowUpRight, Check, Copy, Loader2 } from "lucide-react"
+import { useLanguage } from "@/lib/i18n"
 import { site, socialLinks } from "@/data/site"
-import SectionHeading from "./section-heading"
+import ScrollReveal from "./scroll-reveal"
 
-export default function Contact() {
-  const { t } = useTranslation()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export default function Contact({ canSend = false }: { canSend?: boolean }) {
+  const { language } = useLanguage()
+  const en = language === "en"
+  const [status, setStatus] = useState<"idle"|"pending"|"success"|"error"|"draft">("idle")
+  const [draftUrl, setDraftUrl] = useState("")
+  const [copied, setCopied] = useState(false)
+  const feedback = useRef<HTMLParagraphElement>(null)
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (isSubmitting) return
-    setIsSubmitting(true)
-
+    if (status === "pending") return
     const form = event.currentTarget
-    const formData = new FormData(form)
-    const name = formData.get("name") as string
-    const email = formData.get("email") as string
-    const message = formData.get("message") as string
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      })
-
-      if (!response.ok) {
-        throw new Error("Error sending message")
-      }
-
-      toast({
-        title: t("contact.success.title") as string,
-        description: t("contact.success.message") as string,
-      })
-      form.reset()
-    } catch {
-      toast({
-        title: t("contact.error.title") as string,
-        description: t("contact.error.message") as string,
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false)
+    const data = new FormData(form)
+    const name = String(data.get("name") || "").trim()
+    const email = String(data.get("email") || "").trim()
+    const message = String(data.get("message") || "").trim()
+    const url = `mailto:${site.email}?subject=${encodeURIComponent(`Portfolio · ${name}`)}&body=${encodeURIComponent(`${name}\n${email}\n\n${message}`)}`
+    setDraftUrl(url)
+    if (!canSend) {
+      setStatus("draft")
+      window.location.href = url
+      return
     }
+    setStatus("pending")
+    try {
+      const response = await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,email,message})})
+      if (!response.ok) throw new Error("Contact request failed")
+      setStatus("success")
+      form.reset()
+    } catch { setStatus("error"); requestAnimationFrame(() => feedback.current?.focus()) }
   }
-
-  const linkedin = socialLinks.find((link) => link.icon === "linkedin")
-  const github = socialLinks.find((link) => link.icon === "github")
-
-  return (
-    <section id="contact" className="py-16 md:py-24">
-      <div className="container px-4 md:px-6">
-        <SectionHeading title={t("contact.title") as string} description={t("contact.description") as string} />
-        <div className="mx-auto max-w-5xl mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>{t("contact.form.title") as string}</CardTitle>
-                <CardDescription>{t("contact.form.description") as string}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">{t("contact.form.name") as string}</Label>
-                    <Input id="name" name="name" required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">{t("contact.form.email") as string}</Label>
-                    <Input id="email" name="email" type="email" required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">{t("contact.form.message") as string}</Label>
-                    <Textarea id="message" name="message" rows={5} required />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        {t("contact.form.sending") as string}
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        {t("contact.form.submit") as string}
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>{t("contact.info.title") as string}</CardTitle>
-                <CardDescription>{t("contact.info.description") as string}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <Mail className="h-6 w-6 mt-1 text-primary" />
-                  <div>
-                    <h3 className="font-medium">{t("contact.info.email") as string}</h3>
-                    <a href={`mailto:${site.email}`} className="text-sm text-muted-foreground hover:text-primary">
-                      {site.email}
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <MapPin className="h-6 w-6 mt-1 text-primary" />
-                  <div>
-                    <h3 className="font-medium">{t("contact.info.location") as string}</h3>
-                    <p className="text-sm text-muted-foreground">{site.location.es}</p>
-                  </div>
-                </div>
-                {linkedin && (
-                  <div className="flex items-start space-x-4">
-                    <Linkedin className="h-6 w-6 mt-1 text-primary" />
-                    <div>
-                      <h3 className="font-medium">LinkedIn</h3>
-                      <a
-                        href={linkedin.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-primary"
-                      >
-                        {linkedin.href.replace("https://www.", "")}
-                      </a>
-                    </div>
-                  </div>
-                )}
-                {github && (
-                  <div className="flex items-start space-x-4">
-                    <Github className="h-6 w-6 mt-1 text-primary" />
-                    <div>
-                      <h3 className="font-medium">GitHub</h3>
-                      <a
-                        href={github.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-primary"
-                      >
-                        {github.href.replace("https://", "")}
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+  async function copyEmail() {
+    try { await navigator.clipboard.writeText(site.email); setCopied(true); window.setTimeout(() => setCopied(false),2500) }
+    catch { window.location.href = `mailto:${site.email}` }
+  }
+  return <section id="contact" className="contact-section section-space" aria-labelledby="contact-heading">
+    <div className="page-frame contact-layout">
+      <div className="contact-copy">
+        <ScrollReveal><h2 id="contact-heading">{en ? "Let’s talk about your team" : "Hablemos de tu equipo"}</h2></ScrollReveal>
+        <ScrollReveal delay={80}><p className="contact-intro">{en ? "Looking for a Full Stack developer who understands business processes and databases? I’d like to hear what your team needs to solve." : "¿Buscás un desarrollador Full Stack que entienda los procesos de negocio y las bases de datos? Me gustaría conocer qué necesita resolver tu equipo."}</p></ScrollReveal>
+        <ScrollReveal delay={140}><div className="email-row"><a href={`mailto:${site.email}`} className="contact-email">{site.email}</a><button onClick={copyEmail} type="button" className="icon-button copy-email" aria-label={copied ? (en ? "Email copied" : "Email copiado") : (en ? "Copy email" : "Copiar email")}>{copied ? <Check size={19} aria-hidden="true"/> : <Copy size={18} aria-hidden="true"/>}</button></div><p className="copy-status" role="status">{copied ? (en ? "Email copied" : "Email copiado") : ""}</p></ScrollReveal>
+        <ScrollReveal delay={200}><div className="contact-socials">{socialLinks.filter(link => link.icon !== "mail").map(link => <a href={link.href} key={link.label} target="_blank" rel="noopener noreferrer" className="text-link">{link.label}<ArrowUpRight size={16} aria-hidden="true"/></a>)}</div><div className="resume-links"><a href={en ? site.resumeEnUrl : site.resumeUrl} download>{en ? "Download CV · PDF ↓" : "Descargar CV · PDF ↓"}</a><a href={en ? site.resumeEnTextUrl : site.resumeTextUrl} download>{en ? "Plain text version ↓" : "Versión en texto ↓"}</a></div></ScrollReveal>
       </div>
-    </section>
-  )
+      <ScrollReveal className="contact-form-wrap" delay={100}>
+        <form onSubmit={submit} action={`mailto:${site.email}`} method="post" encType="text/plain" className="contact-form">
+          <div><label htmlFor="contact-name">{en ? "Your name" : "Tu nombre"}</label><input id="contact-name" name="name" autoComplete="name" maxLength={120} required /></div>
+          <div><label htmlFor="contact-email">{en ? "Your email" : "Tu email"}</label><input id="contact-email" name="email" type="email" autoComplete="email" spellCheck={false} maxLength={254} required /></div>
+          <div><label htmlFor="contact-message">{en ? "What are you building?" : "¿Qué están construyendo?"}</label><textarea id="contact-message" name="message" rows={4} maxLength={5000} required /></div>
+          <button className="button button-ink" type="submit" disabled={status === "pending"}>{status === "pending" ? <><Loader2 className="spinner" size={18} aria-hidden="true"/>{en ? "Sending…" : "Enviando…"}</> : <>{canSend ? (en ? "Send message" : "Enviar mensaje") : (en ? "Open email app" : "Abrir mi correo")}<ArrowUpRight size={18} aria-hidden="true"/></>}</button>
+          {!canSend ? <p className="form-note">{en ? "Your email app opens with a ready-to-send draft." : "Se abre tu app de correo con el mensaje preparado."}</p> : null}
+          <p ref={feedback} tabIndex={-1} className="form-feedback" role="status" aria-live="polite">
+            {status === "success" ? (en ? "Message sent. Thank you for reaching out." : "Mensaje enviado. Gracias por contactarme.") : null}
+            {status === "draft" ? (en ? "Continue in your email app to send the message." : "Continuá en tu app de correo para enviar el mensaje.") : null}
+            {status === "error" ? (en ? "The message couldn’t be sent. Try again or use email directly." : "No se pudo enviar. Intentá de nuevo o escribime por email.") : null}
+            {(status === "draft" || status === "error") && draftUrl ? <> <a href={draftUrl}>{en ? "Open email draft" : "Abrir el borrador"}</a></> : null}
+          </p>
+        </form>
+      </ScrollReveal>
+    </div>
+  </section>
 }

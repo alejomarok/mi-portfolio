@@ -1,0 +1,146 @@
+{
+  "es": {
+    "role": "Desarrollador Full Stack | React, Next.js, Node.js y SQL",
+    "contact": ["Córdoba, Argentina | +54 3571-662505 | alejom1999@gmail.com", "GitHub: github.com/alejomarok", "LinkedIn: linkedin.com/in/alejo-marcó-3ba973221"],
+    "summary_title": "PERFIL PROFESIONAL",
+    "summary": "Desarrollador Full Stack y líder técnico con experiencia en sistemas empresariales y productos web. Conecto interfaces, APIs, autenticación y bases de datos para resolver necesidades de negocio y ordenar procesos de gestión. Trabajo con Oracle SQL y PL/SQL, React, Next.js, TypeScript y Node.js. Uso Codex y Claude para explorar ideas y encontrar soluciones viables a problemas complejos.",
+    "experience_title": "EXPERIENCIA PROFESIONAL",
+    "experience": [
+      {
+        "title": "Líder Técnico / Analista Programador - Recursos Informáticos",
+        "period": "Mayo 2023 - Actualidad | Córdoba, Argentina",
+        "items": [
+          "Análisis funcional, desarrollo y mantenimiento de software empresarial crítico con Centura y OpenText Gupta Team Developer; ingeniería inversa de módulos con documentación limitada.",
+          "Desarrollo y optimización en Oracle SQL y PL/SQL: consultas, procedimientos, funciones, paquetes y lógica de negocio; reportes, exportaciones y procesos administrativos.",
+          "Investigación y resolución de incidentes de producción, análisis de dependencias y pruebas de cambios en sistemas con décadas de operación.",
+          "Guía técnica, revisión de código y colaboración con desarrollo, soporte y clientes. Modernización gradual de áreas seleccionadas con React."
+        ]
+      },
+      {
+        "title": "Desarrollador Full Stack - Proyectos freelance y personales",
+        "period": "Febrero 2022 - Actualidad",
+        "items": [
+          "Desarrollo de aplicaciones web y sistemas de gestión: catálogo, inventario, pedidos, créditos y trámites, con interfaces públicas y áreas administrativas.",
+          "Integración de autenticación, permisos, formularios validados y persistencia de datos con Firebase o PostgreSQL y Prisma, según el proyecto."
+        ]
+      }
+    ],
+    "skills_title": "HABILIDADES TÉCNICAS",
+    "skills": [
+      ["Bases de datos", "Oracle Database, SQL, PL/SQL, PostgreSQL, MySQL, MongoDB, SQLBase, Cloud Firestore; modelado y optimización de consultas."],
+      ["Backend", "Node.js, Express, APIs REST, Java, Spring Boot, autenticación, autorización e integraciones externas."],
+      ["Frontend", "React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS, Material UI, Bootstrap, Vite, React Hook Form, Zod."],
+      ["Datos y cloud", "Prisma, Supabase, Firebase Authentication, Firebase Storage, Better Auth, Vercel."],
+      ["Herramientas y calidad", "Git, GitHub, GitFlow, Jira, Postman, Axios, Visual Studio Code, testing de APIs, Vitest, Playwright, revisión de código y documentación técnica."],
+      ["IA", "Codex y Claude para ideación, exploración de alternativas y resolución de problemas complejos."],
+      ["Otras tecnologías", "PHP, OpenText Gupta, Centura Team Developer, reportes QRP, ZPL; análisis funcional y modernización de sistemas legacy."]
+    ],
+    "projects_title": "PROYECTOS SELECCIONADOS",
+    "projects": [
+      {
+        "name": "AutoGlobal - Gestión de concesionaria y catálogo",
+        "stack": "React, JavaScript, Material UI, Firebase, React Router, Tailwind CSS",
+        "items": ["Catálogo público conectado con administración de vehículos: altas, edición, stock, reservas y ventas, con acceso administrativo por rol.", "Paneles de stock y estadísticas con filtros por período, consultas por WhatsApp y exportaciones a PDF y Excel. La carga operativa de stock funciona de forma independiente de la analítica."]
+      },
+      {
+        "name": "Chaioboutique - Gestión comercial, e-commerce y punto de venta",
+        "stack": "Next.js, React, TypeScript, PostgreSQL, Prisma, Better Auth, Zod, Vitest, Playwright",
+        "items": ["Aplicación modular que conecta tienda pública, cuentas, administración, catálogo, inventario, pedidos y punto de venta.", "Integración entre interfaz y datos relacionales, con sesiones, permisos y validación de formularios en cliente y servidor. Flujo de checkout e integración con Mercado Pago."]
+      },
+      {
+        "name": "GAMAAN - Plataforma financiera y gestión de créditos",
+        "stack": "React, Vite, TypeScript, Firebase Authentication, Cloud Firestore, Firebase Storage, EmailJS",
+        "items": ["Responsable del producto desde la definición funcional hasta el despliegue: simulación, solicitud, evaluación y seguimiento de créditos.", "Modelado de datos y áreas privadas para usuarios, agencias y administradores, con permisos por rol, estados de solicitud, panel administrativo y notificaciones."]
+      },
+      {
+        "name": "Pactum - Gestión de trámites y documentación",
+        "stack": "Next.js, React, TypeScript, Firebase, Firebase Admin, React Hook Form, Zod",
+        "items": ["Solicitudes guiadas y expediente digital con datos, documentación, firmantes y un área privada de seguimiento.", "Circuito administrativo con revisión, costos, pagos y estados; transiciones permitidas e historial de acciones por trámite."]
+      }
+    ],
+    "education": {
+      "title": "FORMACIÓN",
+      "items": ["Formación en CoderHouse, Udemy y EducaciónIT: desarrollo web, JavaScript, backend con Node.js, SQL, Oracle PL/SQL y testing QA manual.", "Universidad Nacional de Córdoba - Licenciatura en Comunicación Social, en curso."]
+    },
+    "other": {
+      "title": "OTROS PROYECTOS",
+      "items": ["ZPL Label Designer: edición visual de etiquetas para impresoras Zebra con React.", "Heyday Reminders: recordatorios, contactos y notificaciones con React Native y Expo."]
+    },
+    "languages": {
+      "title": "IDIOMAS",
+      "items": ["Español: nativo. Inglés: intermedio oral y escrito."]
+    }
+  },
+  "en": {
+    "role": "Full Stack Developer | React, Next.js, Node.js & SQL",
+    "contact": ["Córdoba, Argentina | +54 3571-662505 | alejom1999@gmail.com", "GitHub: github.com/alejomarok", "LinkedIn: linkedin.com/in/alejo-marcó-3ba973221"],
+    "summary_title": "PROFESSIONAL SUMMARY",
+    "summary": "Full Stack developer and technical lead experienced in enterprise systems and web products. I connect interfaces, APIs, authentication, and databases to address business needs and organize management workflows. I work with Oracle SQL and PL/SQL, React, Next.js, TypeScript, and Node.js. I use Codex and Claude to explore ideas and find practical solutions to complex problems.",
+    "experience_title": "PROFESSIONAL EXPERIENCE",
+    "experience": [
+      {
+        "title": "Technical Lead / Analyst Programmer - Recursos Informáticos",
+        "period": "May 2023 - Present | Córdoba, Argentina",
+        "items": [
+          "Functional analysis, development, and maintenance of business-critical software with Centura and OpenText Gupta Team Developer; reverse engineering of modules with limited documentation.",
+          "Oracle SQL and PL/SQL development and optimization: queries, procedures, functions, packages, and business logic; reporting, data exports, and administrative processes.",
+          "Production incident investigation and resolution, dependency analysis, and change validation in systems with decades of operation.",
+          "Technical guidance, code review, and collaboration with developers, support teams, and clients. Gradual modernization of selected areas with React."
+        ]
+      },
+      {
+        "title": "Full Stack Developer - Freelance and personal projects",
+        "period": "February 2022 - Present",
+        "items": [
+          "Development of web applications and management systems for catalogs, inventory, orders, credits, and case workflows, with public interfaces and administrative workspaces.",
+          "Integration of authentication, permissions, validated forms, and data persistence using Firebase or PostgreSQL and Prisma, depending on the project."
+        ]
+      }
+    ],
+    "skills_title": "TECHNICAL SKILLS",
+    "skills": [
+      ["Databases", "Oracle Database, SQL, PL/SQL, PostgreSQL, MySQL, MongoDB, SQLBase, Cloud Firestore; data modeling and query optimization."],
+      ["Backend", "Node.js, Express, REST APIs, Java, Spring Boot, authentication, authorization, and external integrations."],
+      ["Frontend", "React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS, Material UI, Bootstrap, Vite, React Hook Form, Zod."],
+      ["Data and cloud", "Prisma, Supabase, Firebase Authentication, Firebase Storage, Better Auth, Vercel."],
+      ["Tools and quality", "Git, GitHub, GitFlow, Jira, Postman, Axios, Visual Studio Code, API testing, Vitest, Playwright, code review, and technical documentation."],
+      ["AI", "Codex and Claude for ideation, exploring alternatives, and complex problem solving."],
+      ["Other technologies", "PHP, OpenText Gupta, Centura Team Developer, QRP reports, ZPL; functional analysis and legacy system modernization."]
+    ],
+    "projects_title": "SELECTED PROJECTS",
+    "projects": [
+      {
+        "name": "AutoGlobal - Dealership management and catalog",
+        "stack": "React, JavaScript, Material UI, Firebase, React Router, Tailwind CSS",
+        "items": ["Public catalog connected to vehicle administration: creation, editing, stock, reservations, and sales, with role-based administrative access.", "Stock and analytics dashboards with date-range filters, WhatsApp inquiry metrics, and PDF and Excel exports. Operational stock loading works independently from analytics."]
+      },
+      {
+        "name": "Chaioboutique - Retail management, e-commerce, and point of sale",
+        "stack": "Next.js, React, TypeScript, PostgreSQL, Prisma, Better Auth, Zod, Vitest, Playwright",
+        "items": ["Modular application connecting the public store, customer accounts, administration, catalog, inventory, orders, and point of sale.", "Integration between interfaces and relational data, with sessions, permissions, and form validation on both client and server. Checkout flow and Mercado Pago integration."]
+      },
+      {
+        "name": "GAMAAN - Financial platform and credit management",
+        "stack": "React, Vite, TypeScript, Firebase Authentication, Cloud Firestore, Firebase Storage, EmailJS",
+        "items": ["Sole product owner from functional definition to deployment: credit simulation, applications, evaluation, and follow-up.", "Data modeling and private workspaces for users, agencies, and administrators, with role-based permissions, application statuses, an admin dashboard, and notifications."]
+      },
+      {
+        "name": "Pactum - Case and document management",
+        "stack": "Next.js, React, TypeScript, Firebase, Firebase Admin, React Hook Form, Zod",
+        "items": ["Guided requests and digital case files with data, documents, signers, and a private tracking workspace.", "Administrative workflow for review, costs, payments, and statuses, with permitted transitions and an action timeline per case."]
+      }
+    ],
+    "education": {
+      "title": "EDUCATION AND TRAINING",
+      "items": ["Training through CoderHouse, Udemy, and EducaciónIT: web development, JavaScript, Node.js backend development, SQL, Oracle PL/SQL, and manual QA testing.", "Universidad Nacional de Córdoba - Undergraduate degree in Social Communication, in progress."]
+    },
+    "other": {
+      "title": "OTHER PROJECTS",
+      "items": ["ZPL Label Designer: visual label editing for Zebra printers with React.", "Heyday Reminders: reminders, contacts, and notifications with React Native and Expo."]
+    },
+    "languages": {
+      "title": "LANGUAGES",
+      "items": ["Spanish: native. English: intermediate, spoken and written."]
+    }
+  }
+}

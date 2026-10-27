@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect, useState, CSSProperties } from "react";
 
 class Grad {
@@ -128,6 +130,7 @@ interface Config {
 }
 
 interface WavesProps {
+  paused?: boolean;
   lineColor?: string;
   backgroundColor?: string;
   waveSpeedX?: number;
@@ -144,6 +147,7 @@ interface WavesProps {
 }
 
 const Waves: React.FC<WavesProps> = ({
+  paused = false,
   lineColor = "black",
   backgroundColor = "transparent",
   waveSpeedX = 0.0125,
@@ -244,7 +248,7 @@ const Waves: React.FC<WavesProps> = ({
   ]);
 
   useEffect(() => {
-    if (!shouldAnimate) return;
+    if (!shouldAnimate || paused) return;
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -371,7 +375,7 @@ const Waves: React.FC<WavesProps> = ({
 
     function tick(t: number) {
       if (!container) return;
-      if (!visibleRef.current) {
+      if (!visibleRef.current || document.hidden) {
         frameIdRef.current = requestAnimationFrame(tick);
         return;
       }
@@ -408,7 +412,8 @@ const Waves: React.FC<WavesProps> = ({
     }
     function updateMouse(x: number, y: number) {
       const mouse = mouseRef.current;
-      const b = boundingRef.current;
+      const b = container?.getBoundingClientRect();
+      if (!b) return;
       mouse.x = x - b.left;
       mouse.y = y - b.top;
       if (!mouse.set) {
@@ -444,7 +449,7 @@ const Waves: React.FC<WavesProps> = ({
         cancelAnimationFrame(frameIdRef.current);
       }
     };
-  }, [shouldAnimate]);
+  }, [shouldAnimate, paused]);
 
   if (!shouldAnimate) {
     return (

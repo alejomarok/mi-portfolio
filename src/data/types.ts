@@ -65,6 +65,15 @@ export interface ProjectItem {
   contentNote?: Localized<string>
   featured: boolean
   displayOrder: number
+  image?: string
+  logo?: string
+  brandMark?: string
+  discipline?: Localized<string>
+  contribution?: Localized<string>
+  highlights?: Localized<string[]>
+  workflow: Localized<string[]>
+  managementModules: Localized<{title: string; description: string}[]>
+  previewStack?: string[]
 }
 
 export type CertificationCategory = "database" | "backend" | "frontend" | "testing" | "language"

@@ -2,11 +2,7 @@
 module.exports = {
   darkMode: ["class"], // Para habilitar el modo oscuro basado en clases
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Escanea los archivos de Next.js
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx}", // Agregar estos para que escanee todo tu proyecto
-    "*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {

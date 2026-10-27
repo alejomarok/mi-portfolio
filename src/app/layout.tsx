@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import localFont from "next/font/local"
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -8,22 +8,19 @@ import { LanguageProvider } from "../lib/i18n"
 import { Toaster } from "@/components/ui/toaster"
 import { site } from "@/data/site"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const archivo = localFont({
+  src: "../../public/fonts/archivo-variable.woff2",
+  variable: "--font-archivo",
+  weight: "100 900",
+  display: "swap",
 })
 
 // TODO: set NEXT_PUBLIC_SITE_URL in production (e.g. Vercel env vars) once
 // the site has its real domain, so canonical/OG URLs resolve correctly.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-const title = "Alejo Marcó — Líder Técnico & Desarrollador Full Stack"
+const title = "Alejo Marcó — Desarrollador Full Stack · React, Node.js y SQL"
 const description =
-  "Líder Técnico, desarrollador Oracle PL/SQL y desarrollador Full Stack especializado en sistemas de negocio críticos, modernización de aplicaciones legacy, React, Next.js y desarrollo backend."
+  "Desarrollador Full Stack y líder técnico en Córdoba, Argentina. React, Next.js, Node.js, Oracle PL/SQL y PostgreSQL para sistemas de gestión, e-commerce y plataformas financieras. IA aplicada a la resolución de problemas."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -40,6 +37,9 @@ export const metadata: Metadata = {
     "Legacy Systems",
     "React",
     "Next.js",
+    "Node.js",
+    "PostgreSQL",
+    "Sistemas de gestión",
   ],
   authors: [{ name: site.name }],
   creator: site.name,
@@ -51,13 +51,13 @@ export const metadata: Metadata = {
     title,
     description,
     siteName: site.name,
-    images: [{ url: "/profile.jpeg", width: 800, height: 800, alt: site.name }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
-    images: ["/profile.jpeg"],
+    images: ["/opengraph-image.png"],
   },
   robots: {
     index: true,
@@ -72,9 +72,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${archivo.variable} antialiased`}>
         <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             <div className="flex min-h-screen flex-col">
               <Header />
               {children}
