@@ -210,14 +210,11 @@ const Waves: React.FC<WavesProps> = ({
 
   useEffect(() => {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const smallScreenQuery = window.matchMedia("(max-width: 640px)");
-    const update = () => setShouldAnimate(!reducedMotionQuery.matches && !smallScreenQuery.matches);
+    const update = () => setShouldAnimate(!reducedMotionQuery.matches);
     update();
     reducedMotionQuery.addEventListener("change", update);
-    smallScreenQuery.addEventListener("change", update);
     return () => {
       reducedMotionQuery.removeEventListener("change", update);
-      smallScreenQuery.removeEventListener("change", update);
     };
   }, []);
 

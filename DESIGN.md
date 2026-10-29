@@ -27,7 +27,7 @@ A portfolio for Full Stack hiring, grounded in business systems, databases, and 
 
 Real project URLs, native disclosures, keyboard-operated stack tabs, an accessible mobile menu, light/dark themes, ES/EN preference, visible focus, reduced-motion support, and reading without JavaScript.
 
-ReactBits Waves is a full-width hero background, with its own layer behind the copy and photograph. The portrait responds to pointer movement and floats gently, anchored to the panel’s lower edge. The pause/resume button in the hero footer controls both animations. Honor reduced motion, suspend heavy drawing offscreen and when the browser is hidden, and keep the photograph visible without JavaScript. Retain the small-screen optimization for canvas. Theme changes must affect the full hero even when motion is paused.
+ReactBits Waves is a full-width hero background, with its own layer behind the copy and photograph. The portrait responds to pointer movement and floats gently, anchored to the panel’s lower edge. The pause/resume button in the hero footer controls both animations. Render the waves on mobile too: screen width alone must not disable the canvas. Honor reduced motion, suspend heavy drawing offscreen and when the browser is hidden, and keep the photograph visible without JavaScript. Theme changes must affect the full hero even when motion is paused.
 
 Contact uses direct email. When SMTP credentials exist, the same form sends through the existing contact API. Otherwise it prepares a draft in the visitor’s email app and explains that action. Never display a sent confirmation for an unsubmitted draft.
 
